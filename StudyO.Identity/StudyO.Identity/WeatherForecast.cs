@@ -1,4 +1,4 @@
-namespace StudyO.Identity
+namespace StudyO.Identity.API
 {
     public class WeatherForecast
     {

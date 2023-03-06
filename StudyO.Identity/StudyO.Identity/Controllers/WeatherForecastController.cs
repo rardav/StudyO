@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace StudyO.Identity.Controllers
+namespace StudyO.Identity.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]

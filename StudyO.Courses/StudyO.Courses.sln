@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyO.Courses.API", "StudyO.Courses\StudyO.Courses.API.csproj", "{2C95BE42-9496-474A-965E-EAE6E6434E1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudyO.Courses.API", "StudyO.Courses\StudyO.Courses.API.csproj", "{2C95BE42-9496-474A-965E-EAE6E6434E1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyO.Courses.Infrastructure", "StudyO.Courses.Infrastructure\StudyO.Courses.Infrastructure.csproj", "{1356CF94-8C48-4243-BDE3-AA384A7E1180}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyO.Courses.Domain", "StudyO.Courses.Domain\StudyO.Courses.Domain.csproj", "{647CB512-39FB-46E1-A085-2C379F15DEBF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{2C95BE42-9496-474A-965E-EAE6E6434E1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C95BE42-9496-474A-965E-EAE6E6434E1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C95BE42-9496-474A-965E-EAE6E6434E1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1356CF94-8C48-4243-BDE3-AA384A7E1180}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1356CF94-8C48-4243-BDE3-AA384A7E1180}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1356CF94-8C48-4243-BDE3-AA384A7E1180}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1356CF94-8C48-4243-BDE3-AA384A7E1180}.Release|Any CPU.Build.0 = Release|Any CPU
+		{647CB512-39FB-46E1-A085-2C379F15DEBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{647CB512-39FB-46E1-A085-2C379F15DEBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{647CB512-39FB-46E1-A085-2C379F15DEBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{647CB512-39FB-46E1-A085-2C379F15DEBF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
