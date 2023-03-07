@@ -1,4 +1,4 @@
-﻿namespace StudyO.Courses.API.Settings
+﻿namespace StudyO.Courses.Infrastructure.Settings
 {
     public class MongoDbSettings
     {
