@@ -8,7 +8,9 @@ namespace StudyO.Courses.Infrastructure.Profiles
     {
         public CourseProfile()
         {
-            CreateMap<Course, CourseDto>();
+            CreateMap<Course, CourseDto>().ReverseMap();
+            CreateMap<Course, CreateCourseDto>().ReverseMap();
+            CreateMap<CourseDto, CreateCourseDto>().ReverseMap();
         }
     }
 }
