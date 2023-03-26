@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+  catalogdb:
+    container_name: catalogdb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - catalog_data:/data/db
+
+  mongo-express:
+    container_name: mongo-express
+    environment:
+      - ME_CONFIG_OPTIONS_EDITORTHEME=ambiance
+      - ME_CONFIG_MONGODB_SERVER=catalogdb
+    depends_on:
+      - catalogdb
+    ports:
+      - "8081:8081"
+
+  catalog.api:
+    container_name: catalog.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - MongoDbSettings__Host=catalogdb
+      - MongoDbSettings__Port=27017
+    depends_on:
+      - catalogdb
+    ports:
+      - "8100:80"
+       
