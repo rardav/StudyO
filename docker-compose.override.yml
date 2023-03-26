@@ -30,3 +30,9 @@ services:
     ports:
       - "8100:80"
        
+  classes.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
+

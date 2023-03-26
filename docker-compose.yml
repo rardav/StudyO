@@ -13,5 +13,11 @@ services:
       context: .
       dockerfile: src/Services/Catalog/Catalog.API/Dockerfile
 
+  classes.api:
+    image: ${DOCKER_REGISTRY-}classesapi
+    build:
+      context: .
+      dockerfile: src/Services/Classes/Classes.API/Dockerfile
+
 volumes:
   catalog_data: 
