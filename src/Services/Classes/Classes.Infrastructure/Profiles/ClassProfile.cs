@@ -9,6 +9,8 @@ namespace StudyO.Classes.Infrastructure.Profiles
         public ClassProfile()
         {
             CreateMap<Class, ClassDto>().ReverseMap();
+            CreateMap<Class, CreateClassDto>().ReverseMap();
+            CreateMap<Class, UpdateClassDto>().ReverseMap();
         }
         
     }

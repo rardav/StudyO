@@ -4,8 +4,8 @@ services:
   catalogdb:
     image: mongo
 
-  mongo-express:
-    image: mongo-express
+  classesdb:
+    image: mongo
 
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
@@ -19,5 +19,9 @@ services:
       context: .
       dockerfile: src/Services/Classes/Classes.API/Dockerfile
 
+  mongo-express:
+    image: mongo-express
+
 volumes:
   catalog_data: 
+  classes_data:

@@ -9,15 +9,14 @@ services:
     volumes:
       - catalog_data:/data/db
 
-  mongo-express:
-    container_name: mongo-express
-    environment:
-      - ME_CONFIG_OPTIONS_EDITORTHEME=ambiance
-      - ME_CONFIG_MONGODB_SERVER=catalogdb
-    depends_on:
-      - catalogdb
+  classesdb:
+    container_name: classesdb
+    restart: always
+    command: mongod --port 27018
     ports:
-      - "8081:8081"
+      - "27018:27018"
+    volumes:
+      - classes_data:/data/db
 
   catalog.api:
     container_name: catalog.api
@@ -29,10 +28,27 @@ services:
       - catalogdb
     ports:
       - "8100:80"
-       
+
   classes.api:
+    container_name: classes.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - MongoDbSettings__Host=classesdb
+      - MongoDbSettings__Port=27018
+    depends_on:
+      - classesdb
     ports:
-      - "80"
+      - "8200:80"
+       
+  mongo-express:
+    container_name: mongo-express
+    environment:
+      - ME_CONFIG_OPTIONS_EDITORTHEME=ambiance
+      - ME_CONFIG_MONGODB_SERVER="catalogdb,classesdb"
+    depends_on:
+      - catalogdb
+    ports:
+      - "8001:8081"
+
+  
 

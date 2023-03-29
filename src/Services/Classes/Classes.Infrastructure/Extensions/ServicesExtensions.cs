@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 using StudyO.Classes.Infrastructure.Profiles;
 
-namespace StudyO.Classes.Infrastructure.Extensions
+namespace Classes.Infrastructure.Extensions
 {
     public static class ServicesExtensions
     {

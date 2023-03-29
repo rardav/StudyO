@@ -9,11 +9,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{EE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{DE3C2D77-5D30-41A1-B9A1-F24F8318152B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.API", "src\Services\Catalog\Catalog.API\Catalog.API.csproj", "{94CBEF9B-1AFD-4CB4-BC0C-20A06EBD96F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.API", "src\Services\Catalog\Catalog.API\Catalog.API.csproj", "{94CBEF9B-1AFD-4CB4-BC0C-20A06EBD96F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Domain", "src\Services\Catalog\Catalog.Domain\Catalog.Domain.csproj", "{1D04559D-A25B-48FF-B6E3-2064E6B235F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Domain", "src\Services\Catalog\Catalog.Domain\Catalog.Domain.csproj", "{1D04559D-A25B-48FF-B6E3-2064E6B235F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Infrastructure", "src\Services\Catalog\Catalog.Infrastructure\Catalog.Infrastructure.csproj", "{9AC01061-593B-4189-9E66-A505034B5F12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Infrastructure", "src\Services\Catalog\Catalog.Infrastructure\Catalog.Infrastructure.csproj", "{9AC01061-593B-4189-9E66-A505034B5F12}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{1E6346F8-24E6-45CC-AAC7-93F50673447E}"
 EndProject
@@ -23,11 +23,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notifications", "Notificati
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProgressTracking", "ProgressTracking", "{77AE9110-932C-4550-AA2A-3500A17121ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Classes.API", "src\Services\Classes\Classes.API\Classes.API.csproj", "{C13EDD18-CFE4-4122-A16B-A3ECEB7579E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Classes.API", "src\Services\Classes\Classes.API\Classes.API.csproj", "{C13EDD18-CFE4-4122-A16B-A3ECEB7579E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Classes.Domain", "src\Services\Classes\Classes.Domain\Classes.Domain.csproj", "{82833D84-5EEE-45A6-BAD4-3E1B0555BD76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Classes.Domain", "src\Services\Classes\Classes.Domain\Classes.Domain.csproj", "{82833D84-5EEE-45A6-BAD4-3E1B0555BD76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Classes.Infrastructure", "src\Services\Classes\Classes.Infrastructure\Classes.Infrastructure.csproj", "{8D247250-4652-4901-B084-2D2073D8B066}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Classes.Infrastructure", "src\Services\Classes\Classes.Infrastructure\Classes.Infrastructure.csproj", "{8D247250-4652-4901-B084-2D2073D8B066}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateways", "Gateways", "{540A0932-0CC8-4AA4-9587-F311AAF33076}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -80,6 +82,7 @@ Global
 		{C13EDD18-CFE4-4122-A16B-A3ECEB7579E7} = {C7AE39CD-B8BF-45B6-AA97-371B20CFD192}
 		{82833D84-5EEE-45A6-BAD4-3E1B0555BD76} = {C7AE39CD-B8BF-45B6-AA97-371B20CFD192}
 		{8D247250-4652-4901-B084-2D2073D8B066} = {C7AE39CD-B8BF-45B6-AA97-371B20CFD192}
+		{540A0932-0CC8-4AA4-9587-F311AAF33076} = {7C238303-B433-4FEC-8A3B-2DDFC83774A2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {406FD455-F7E7-414E-94F3-4CB03116D900}
