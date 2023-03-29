@@ -44,7 +44,7 @@ services:
     container_name: mongo-express
     environment:
       - ME_CONFIG_OPTIONS_EDITORTHEME=ambiance
-      - ME_CONFIG_MONGODB_SERVER="catalogdb,classesdb"
+      - ME_CONFIG_MONGODB_SERVER=catalogdb
     depends_on:
       - catalogdb
     ports:

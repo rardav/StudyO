@@ -1,0 +1,57 @@
+{
+  "Routes": [
+    // Catalog
+    {
+      "DownstreamPathTemplate": "/api/Courses",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8100"
+        }
+      ],
+      "UpstreamPathTemplate": "/Courses",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Courses/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8100"
+        }
+      ],
+      "UpstreamPathTemplate": "/Courses/{id}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "PUT",
+        "DELETE"
+      ]
+    },
+    // Classes
+    {
+      "DownstreamPathTemplate": "/api/Classes/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8200"
+        }
+      ],
+      "UpstreamPathTemplate": "/Classes/{id}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "PUT",
+        "DELETE"
+      ]
+      
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5000"
+  }
+}
