@@ -10,5 +10,7 @@ namespace Classes.Infrastructure.Repositories.Contracts
         Task CreateAsync(Class clss);
         Task UpdateAsync(Class clss);
         Task RemoveAsync(Guid id);
+        Task CreateAssignmentAsync(Assignment assignment, Guid classId);
+        
     }
 }

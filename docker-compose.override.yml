@@ -44,11 +44,30 @@ services:
     container_name: mongo-express
     environment:
       - ME_CONFIG_OPTIONS_EDITORTHEME=ambiance
-      - ME_CONFIG_MONGODB_SERVER=catalogdb
+      - ME_CONFIG_MONGODB_URL=mongodb://classesdb:27018
     depends_on:
       - catalogdb
     ports:
-      - "8001:8081"
+      - "8081:8081"
 
-  
+  ocelotapigateway:
+    container_name: ocelotapigateway
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - catalog.api
+      - classes.api
+    ports:
+      - "5000:80"
 
+  aggregator:
+    container_name: aggregator
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ApiSettings__CatalogUrl=http://catalog.api
+      - ApiSettings__ClassesUrl=http://classes.api
+    depends_on:
+      - catalog.api
+      - classes.api
+    ports:
+      - "5001:80"

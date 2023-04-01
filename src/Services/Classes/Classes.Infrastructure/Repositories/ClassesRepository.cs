@@ -56,14 +56,18 @@ namespace Classes.Infrastructure.Repositories
 
         public async Task UpdateAsync(Class clss)
         {
-            if (clss == null)
-            {
-                throw new ArgumentNullException(nameof(clss));
-            }
-
             var filter = _filterBuilder.Eq(existingClass => existingClass.Id, clss.Id);
 
             await _dbCollection.ReplaceOneAsync(filter, clss);
+        }
+
+        public async Task CreateAssignmentAsync(Assignment assignment, Guid classId)
+        {
+            var filter = _filterBuilder.Eq(clss => clss.Id, classId);
+
+            var update = Builders<Class>.Update.AddToSet(clss => clss.Assignments, assignment);
+
+            await _dbCollection.UpdateOneAsync(filter, update);
         }
     }
 }

@@ -85,6 +85,30 @@ namespace Classes.API.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Add an assignment to a particular class.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="createAssignmentDto"></param>
+        /// <returns></returns>
+        [HttpPost("{id}/assignments")]
+        public async Task<IActionResult> Put(Guid id, CreateAssignmentDto createAssignmentDto)
+        {
+            var existingClass = await _classesRepository.GetAsync(id);
+
+            if (existingClass == null)
+            {
+                return NotFound();
+            }
+
+            var assignment = _mapper.Map<Assignment>(createAssignmentDto);
+
+            await _classesRepository.CreateAssignmentAsync(assignment, id);
+
+            return NoContent();
+        }
+
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {

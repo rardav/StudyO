@@ -2,7 +2,7 @@
 using Classes.Domain.Dtos;
 using Classes.Domain.Entities;
 
-namespace StudyO.Classes.Infrastructure.Profiles
+namespace Classes.Infrastructure.Profiles
 {
     public class ClassProfile : Profile
     {
@@ -12,6 +12,6 @@ namespace StudyO.Classes.Infrastructure.Profiles
             CreateMap<Class, CreateClassDto>().ReverseMap();
             CreateMap<Class, UpdateClassDto>().ReverseMap();
         }
-        
+
     }
 }

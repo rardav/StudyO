@@ -22,6 +22,20 @@ services:
   mongo-express:
     image: mongo-express
 
+  ocelotapigateway:
+    image: ${DOCKER_REGISTRY-}ocelotapigateway
+    build:
+      context: .
+      dockerfile: src/Gateways/OcelotApiGateway/Dockerfile
+
+  aggregator:
+    image: ${DOCKER_REGISTRY-}aggregator
+    build:
+      context: .
+      dockerfile: src/Gateways/Aggregator/Dockerfile
+
 volumes:
   catalog_data: 
   classes_data:
+
+

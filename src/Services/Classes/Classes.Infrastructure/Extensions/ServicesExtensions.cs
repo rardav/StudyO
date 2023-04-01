@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
+using Classes.Infrastructure.Profiles;
 using Classes.Infrastructure.Repositories;
 using Classes.Infrastructure.Repositories.Contracts;
 using Classes.Infrastructure.Settings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
-using StudyO.Classes.Infrastructure.Profiles;
 
 namespace Classes.Infrastructure.Extensions
 {
@@ -40,6 +40,7 @@ namespace Classes.Infrastructure.Extensions
             var mapperConfig = new MapperConfiguration(config =>
             {
                 config.AddProfile<ClassProfile>();
+                config.AddProfile<AssignmentProfile>();
             });
             var mapper = mapperConfig.CreateMapper();
 
