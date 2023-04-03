@@ -71,3 +71,4 @@ services:
       - classes.api
     ports:
       - "5001:80"
+       
