@@ -31,13 +31,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Classes.Infrastructure", "s
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateways", "Gateways", "{540A0932-0CC8-4AA4-9587-F311AAF33076}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OcelotApiGateway", "src\Gateways\OcelotApiGateway\OcelotApiGateway.csproj", "{4CB0AC69-915E-44CD-BC94-89D90BA3FB55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OcelotApiGateway", "src\Gateways\OcelotApiGateway\OcelotApiGateway.csproj", "{4CB0AC69-915E-44CD-BC94-89D90BA3FB55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aggregator", "src\Gateways\Aggregator\Aggregator.csproj", "{7B32DA9B-CB03-4CE8-B4E7-8BF3CB18FA2D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aggregator", "src\Gateways\Aggregator\Aggregator.csproj", "{7B32DA9B-CB03-4CE8-B4E7-8BF3CB18FA2D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{ECCED8B8-0425-45EA-9E9C-F8B7A431A0F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer", "src\Services\Identity\IdentityServer\IdentityServer.csproj", "{4C6DB176-D54A-46F6-8D0A-1CE40AD8B082}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "src\Services\Identity\IdentityServer\IdentityServer.csproj", "{4C6DB176-D54A-46F6-8D0A-1CE40AD8B082}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{9B330A24-5814-4528-A777-C7B6876ABABA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -107,6 +109,7 @@ Global
 		{7B32DA9B-CB03-4CE8-B4E7-8BF3CB18FA2D} = {540A0932-0CC8-4AA4-9587-F311AAF33076}
 		{ECCED8B8-0425-45EA-9E9C-F8B7A431A0F9} = {EEFBED1C-D8EB-4FC5-AB8F-031AB9775DB7}
 		{4C6DB176-D54A-46F6-8D0A-1CE40AD8B082} = {ECCED8B8-0425-45EA-9E9C-F8B7A431A0F9}
+		{9B330A24-5814-4528-A777-C7B6876ABABA} = {7C238303-B433-4FEC-8A3B-2DDFC83774A2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {406FD455-F7E7-414E-94F3-4CB03116D900}
