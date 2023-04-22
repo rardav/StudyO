@@ -56,5 +56,42 @@ namespace Catalog.Infrastructure.Repositories
 
             await _dbCollection.DeleteOneAsync(filter);
         }
+
+        public async Task AddChapterAsync(Guid courseId, Chapter chapter)
+        {
+            chapter.Id = Guid.NewGuid();
+
+            var filter = _filterBuilder.Eq(course => course.Id, courseId);
+            var update = Builders<Course>.Update.Push(course => course.Chapters, chapter);
+
+            await _dbCollection.UpdateOneAsync(filter, update);
+        }
+
+        public async Task AddLessonAsync(Guid courseId, Guid chapterId, Lesson lesson)
+        {
+            lesson.Id = Guid.NewGuid();
+
+            var filter = _filterBuilder.And(
+                _filterBuilder.Eq(course => course.Id, courseId),
+                _filterBuilder.ElemMatch(course => course.Chapters, chapter => chapter.Id == chapterId));
+
+            var update = Builders<Course>.Update.Push(course => course.Chapters[-1].Lessons, lesson);
+
+            await _dbCollection.UpdateOneAsync(filter, update);
+        }
+
+        public async Task AddSectionAsync(Guid courseId, Guid chapterId, Guid lessonId, Section section)
+        {
+            section.Id = Guid.NewGuid();
+
+            var filter = Builders<Course>.Filter.And(
+                _filterBuilder.Eq(course => course.Id, courseId),
+                _filterBuilder.ElemMatch(course => course.Chapters, chapter => chapter.Id.Equals(chapterId) && chapter.Lessons.Any(lesson => lesson.Id.Equals(lessonId)))
+            );
+
+            var update = Builders<Course>.Update.Push(c => c.Chapters[-1].Lessons[-1].Sections, section);
+
+            await _dbCollection.UpdateOneAsync(filter, update);
+        }
     }
 }

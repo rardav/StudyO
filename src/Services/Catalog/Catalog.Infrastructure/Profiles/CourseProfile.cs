@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Catalog.Domain.Dtos;
+using Catalog.Domain.Dtos.CrudDtos;
 using Catalog.Domain.Entities;
 
 namespace Catalog.Infrastructure.Profiles

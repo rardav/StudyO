@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Catalog.Domain.Dtos;
+using Catalog.Domain.Dtos.CrudDtos;
 using Catalog.Domain.Entities;
 using Catalog.Infrastructure.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +20,10 @@ namespace Catalog.API.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Get all courses.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CourseDto>>> GetAll()
         {
@@ -30,12 +35,19 @@ namespace Catalog.API.Controllers
             return Ok(coursesDtos);
         }
 
+        // TODO: get courses by filter
+
+        /// <summary>
+        /// Get course by id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<CourseDto>> GetById(Guid id)
         {
             var course = await _coursesRepository.GetAsync(id);
 
-            if (course == null)
+            if (course is null)
             {
                 return NotFound();
             }
@@ -45,6 +57,11 @@ namespace Catalog.API.Controllers
             return Ok(courseDto);
         }
 
+        /// <summary>
+        /// Insert a new course.
+        /// </summary>
+        /// <param name="createCourseDto"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult<CourseDto>> Post(CreateCourseDto createCourseDto)
         {
@@ -55,12 +72,18 @@ namespace Catalog.API.Controllers
             return CreatedAtAction(nameof(GetById), new { id = course.Id }, course);
         }
 
+        /// <summary>
+        /// Update a course information.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="updateCourseDto"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(Guid id, UpdateCourseDto updateCourseDto)
         {
             var existingCourse = await _coursesRepository.GetAsync(id);
 
-            if (existingCourse == null)
+            if (existingCourse is null)
             {
                 return NotFound();
             }
@@ -72,17 +95,75 @@ namespace Catalog.API.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Delete a course.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
             var course = await _coursesRepository.GetAsync(id);
 
-            if (course == null)
+            if (course is null)
             {
                 return NotFound();
             }
 
             await _coursesRepository.RemoveAsync(course.Id);
+
+            return NoContent();
+        }
+
+        /// <summary>
+        /// Insert a new chapter.
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <param name="createChapterDto"></param>
+        /// <returns></returns>
+        [HttpPost("{courseId}/chapters")]
+        public async Task<ActionResult> Post(Guid courseId, CreateChapterDto createChapterDto)
+        {
+            var course = await _coursesRepository.GetAsync(courseId);
+
+            if (course is null)
+            {
+                return NotFound("Course does not exist.");
+            }
+
+            var chapter = _mapper.Map<Chapter>(createChapterDto);
+
+            await _coursesRepository.AddChapterAsync(courseId, chapter);
+
+            return NoContent();
+        }
+
+        /// <summary>
+        /// Insert a new lesson.
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <param name="createChapterDto"></param>
+        /// <returns></returns>
+        [HttpPost("{courseId}/chapters/{chapterId}/lessons")]
+        public async Task<ActionResult> Post(Guid courseId, Guid chapterId, CreateLessonDto createLessonDto)
+        {
+            var course = await _coursesRepository.GetAsync(courseId);
+
+            if (course is null)
+            {
+                return NotFound("Course does not exist.");
+            }
+
+            var chapter = course.Chapters.FirstOrDefault(chapter => chapter.Id.Equals(chapterId));
+
+            if (chapter is null)
+            {
+                return NotFound("Chapter does not exist.");
+            }
+
+            var lesson = _mapper.Map<Lesson>(createLessonDto);
+
+            await _coursesRepository.AddLessonAsync(courseId, chapterId, lesson);
 
             return NoContent();
         }
