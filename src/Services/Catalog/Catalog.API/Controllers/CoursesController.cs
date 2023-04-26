@@ -142,7 +142,8 @@ namespace Catalog.API.Controllers
         /// Insert a new lesson.
         /// </summary>
         /// <param name="courseId"></param>
-        /// <param name="createChapterDto"></param>
+        /// <param name="chapterId"></param>
+        /// <param name="createLessonDto"></param>
         /// <returns></returns>
         [HttpPost("{courseId}/chapters/{chapterId}/lessons")]
         public async Task<ActionResult> Post(Guid courseId, Guid chapterId, CreateLessonDto createLessonDto)
@@ -164,6 +165,43 @@ namespace Catalog.API.Controllers
             var lesson = _mapper.Map<Lesson>(createLessonDto);
 
             await _coursesRepository.AddLessonAsync(courseId, chapterId, lesson);
+
+            return NoContent();
+        }
+
+        /// <summary>
+        /// Insert a new lesson.
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <param name="createChapterDto"></param>
+        /// <returns></returns>
+        [HttpPost("{courseId}/chapters/{chapterId}/lessons/{lessonId}/sections")]
+        public async Task<ActionResult> Post(Guid courseId, Guid chapterId, Guid lessonId, CreateSectionDto createSectionDto)
+        {
+            var course = await _coursesRepository.GetAsync(courseId);
+
+            if (course is null)
+            {
+                return NotFound("Course does not exist.");
+            }
+
+            var chapter = course.Chapters.FirstOrDefault(chapter => chapter.Id.Equals(chapterId));
+
+            if (chapter is null)
+            {
+                return NotFound("Chapter does not exist.");
+            }
+
+            var lesson = chapter.Lessons.FirstOrDefault(lesson => lesson.Id.Equals(lessonId));
+
+            if (lesson is null)
+            {
+                return NotFound("Lesson does not exist.");
+            }
+
+            var section = _mapper.Map<Section>(createSectionDto);
+
+            await _coursesRepository.AddSectionAsync(courseId, chapterId, lessonId, section);
 
             return NoContent();
         }
