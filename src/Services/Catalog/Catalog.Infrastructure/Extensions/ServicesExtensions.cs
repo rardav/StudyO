@@ -31,7 +31,6 @@ namespace Catalog.Infrastructure.Extensions
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddSingleton<ICoursesRepository, CoursesRepository>();
-            services.AddSingleton<IChaptersRepository, ChaptersRepository>();
 
             return services;
         }

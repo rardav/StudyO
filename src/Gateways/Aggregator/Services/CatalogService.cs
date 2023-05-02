@@ -20,9 +20,11 @@ namespace Aggregator.Services
             return await response.ReadContentAs<CourseModel>();
         }
 
-        public Task<IEnumerable<CourseModel>> GetCourses()
+        public async Task<IEnumerable<CourseModel>> GetCourses()
         {
-            throw new NotImplementedException();
+            var response = _httpClient.GetAsync($"/api/Courses");
+
+            return await response.ReadContentAs<IEnumerable<CourseModel>>();
         }
     }
 }

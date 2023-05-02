@@ -16,7 +16,7 @@ namespace Aggregator.Extensions
             return JsonSerializer.Deserialize<T>(dataAsString, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
-            });
+            }) ?? default!;
         }
     }
 }

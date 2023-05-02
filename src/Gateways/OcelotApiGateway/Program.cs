@@ -11,9 +11,14 @@ builder.Host.ConfigureAppConfiguration((hostingContext, appConfiguration) =>
 });
 
 builder.Services.AddOcelot();
+builder.Services.AddCors(c =>
+{
+    c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+});
 
 var app = builder.Build();
 
+app.UseCors();
 await app.UseOcelot();
 
 app.Run();
