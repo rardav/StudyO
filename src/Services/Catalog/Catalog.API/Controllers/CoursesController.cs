@@ -35,8 +35,6 @@ namespace Catalog.API.Controllers
             return Ok(coursesDtos);
         }
 
-        // TODO: get courses by filter
-
         /// <summary>
         /// Get course by id.
         /// </summary>

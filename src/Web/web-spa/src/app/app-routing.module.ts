@@ -8,10 +8,6 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { AuthComponent } from './layouts/auth/auth.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent},
-  { path: 'courses', component: CoursesComponent},
-  { path: 'quizzes', component: QuizzesComponent},
-  { path: '**', component: HomeComponent},
   // auth views
   {
     path: "auth",
@@ -22,6 +18,11 @@ const routes: Routes = [
       { path: "", redirectTo: "login", pathMatch: "full" },
     ],
   },
+  { path: '', component: HomeComponent},
+  { path: 'courses', component: CoursesComponent},
+  { path: 'quizzes', component: QuizzesComponent},
+  { path: '', component: HomeComponent},
+  { path: "**", redirectTo: "", pathMatch: "full" },
 ];
 
 @NgModule({
