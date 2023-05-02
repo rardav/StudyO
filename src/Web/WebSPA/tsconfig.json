@@ -2,12 +2,8 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "plugins": [
-      { "name": "@angular/language-service"}
-    ],
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
-    "strictPropertyInitialization": false,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitReturns": true,
@@ -18,16 +14,14 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "ES2022",
+    "target": "es2017",
     "module": "es2020",
     "lib": [
       "es2018",
       "dom"
-    ],
-    "useDefineForClassFields": false
+    ]
   },
   "angularCompilerOptions": {
-    "enableIvy": true,
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
