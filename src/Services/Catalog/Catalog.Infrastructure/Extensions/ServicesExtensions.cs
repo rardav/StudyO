@@ -40,6 +40,11 @@ namespace Catalog.Infrastructure.Extensions
             var mapperConfig = new MapperConfiguration(config =>
             {
                 config.AddProfile<CourseProfile>();
+                config.AddProfile<ChapterProfile>();
+                config.AddProfile<LessonProfile>();
+                config.AddProfile<SectionProfile>();
+                config.AddProfile<ReviewProfile>();
+                config.AddProfile<FaqProfile>();
             });
             var mapper = mapperConfig.CreateMapper();
 

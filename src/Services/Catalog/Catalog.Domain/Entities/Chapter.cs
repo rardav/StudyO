@@ -1,6 +1,6 @@
 ﻿namespace Catalog.Domain.Entities
 {
-    public class Chapter
+    public record Chapter
     {
         public Guid Id { get; set; }
         public string Title { get; set; } = string.Empty;

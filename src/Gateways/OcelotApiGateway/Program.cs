@@ -11,14 +11,18 @@ builder.Host.ConfigureAppConfiguration((hostingContext, appConfiguration) =>
 });
 
 builder.Services.AddOcelot();
-builder.Services.AddCors(c =>
+builder.Services.AddCors(options =>
 {
-    c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+    options.AddPolicy("AllowOrigin", builder => builder.WithOrigins("http://localhost:4200")
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        .AllowCredentials()
+        .SetIsOriginAllowed((host) => true));
 });
 
 var app = builder.Build();
 
-app.UseCors();
+app.UseCors("AllowOrigin");
 await app.UseOcelot();
 
 app.Run();

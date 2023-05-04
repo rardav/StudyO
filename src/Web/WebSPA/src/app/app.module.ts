@@ -11,6 +11,12 @@ import { RegisterComponent } from './views/auth/register/register.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AuthComponent } from './layouts/auth/auth.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AuthNavbarComponent } from './components/navbars/auth-navbar/auth-navbar.component';
+import { CatalogComponent } from './views/catalog/catalog.component';
+import { CommonModule } from '@angular/common';
+import { CourseComponent } from './views/course/course.component';
+import { FlowbiteModule } from 'flowbite-angular';
+
 
 @NgModule({
   declarations: [
@@ -20,13 +26,18 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     LoginComponent,
     RegisterComponent,
     FooterComponent,
-    AuthComponent
+    AuthComponent,
+    AuthNavbarComponent,
+    CatalogComponent,
+    CourseComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FlowbiteModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

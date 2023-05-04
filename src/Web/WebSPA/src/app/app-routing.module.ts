@@ -4,6 +4,8 @@ import { LoginComponent } from './views/auth/login/login.component';
 import { RegisterComponent } from './views/auth/register/register.component';
 import { IndexComponent } from './views/index/index.component';
 import { AuthComponent } from './layouts/auth/auth.component';
+import { CatalogComponent } from './views/catalog/catalog.component';
+import { CourseComponent } from './views/course/course.component';
 
 const routes: Routes = [
   // auth views
@@ -17,8 +19,8 @@ const routes: Routes = [
     ],
   },
   { path: '', component: IndexComponent},
-  //{ path: 'courses', component: CoursesComponent},
-  //{ path: 'quizzes', component: QuizzesComponent},
+  { path: 'catalog', component: CatalogComponent},
+  { path: 'catalog/:id', component: CourseComponent},
   { path: "**", redirectTo: "", pathMatch: "full" },
 ];
 

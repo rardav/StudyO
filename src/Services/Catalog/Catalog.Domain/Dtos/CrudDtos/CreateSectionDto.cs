@@ -1,6 +1,6 @@
 ﻿namespace Catalog.Domain.Dtos.CrudDtos
 {
-    public class CreateSectionDto
+    public record CreateSectionDto
     {
         public string Title { get; set; } = string.Empty;
         public int Order { get; set; }

@@ -2,8 +2,8 @@
 {
     public enum Level
     {
-        Beginner = 1,
-        Intermediate = 2,
-        Advanced = 3
+        Beginner = 0,
+        Intermediate = 1,
+        Advanced = 2
     }
 }
