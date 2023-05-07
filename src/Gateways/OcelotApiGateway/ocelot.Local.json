@@ -31,24 +31,6 @@
         "PUT",
         "DELETE"
       ]
-    },
-    // Classes
-    {
-      "DownstreamPathTemplate": "/api/Classes/{id}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": "8200"
-        }
-      ],
-      "UpstreamPathTemplate": "/Classes/{id}",
-      "UpstreamHttpMethod": [
-        "GET",
-        "PUT",
-        "DELETE"
-      ]
-      
     }
   ],
   "GlobalConfiguration": {

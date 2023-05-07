@@ -21,6 +21,6 @@ namespace Catalog.Domain.Entities
         public List<Chapter> Chapters { get; set; } = new List<Chapter>();
         public List<Review> Reviews { get; set; } = new List<Review>();
         public List<string> SkillsToGain { get; set; } = new List<string>();
-        public List<Faq> FAQs { get; set; } = new List<Faq>();
+        public List<Faq> Faqs { get; set; } = new List<Faq>();
     }
 }

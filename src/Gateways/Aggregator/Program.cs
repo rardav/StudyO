@@ -16,6 +16,13 @@ builder.Services.AddHttpClient<ICatalogService, CatalogService>(c =>
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy => policy.AllowAnyHeader()
+                   .AllowAnyMethod().WithOrigins("http://localhost:4200"));
+});
+
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
@@ -27,7 +34,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.UseCors();
 
 app.UseAuthorization();
 

@@ -13,6 +13,7 @@ export interface Course {
     subject: 0,
     chapters: Chapter[],
     prerequisites: string[],
+    skillsToGain: string[],
     reviews: Review[],
     faqs: Faq[]
 }

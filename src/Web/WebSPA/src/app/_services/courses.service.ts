@@ -7,15 +7,16 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CoursesService {
-  baseUrl: string = environment.apiUrl;
+  gatewayUrl: string = environment.gatewayUrl;
+  aggregatorUrl: string = environment.aggregatorUrl;
 
   constructor(private http: HttpClient) { }
 
   getCourses() {
-    return this.http.get<Course[]>(this.baseUrl + 'courses');
+    return this.http.get<Course[]>(this.aggregatorUrl + 'api/courses/');
   }
 
   getCourse(id: string) {
-    return this.http.get<Course>(this.baseUrl + 'courses/' + id);
+    return this.http.get<Course>(this.aggregatorUrl + 'api/courses/' + id);
   }
 }

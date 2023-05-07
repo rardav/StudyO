@@ -162,7 +162,7 @@ namespace Catalog.API.Controllers
 
             var lesson = _mapper.Map<Lesson>(createLessonDto);
 
-            await _coursesRepository.AddLessonAsync(courseId, chapterId, lesson);
+            await _coursesRepository.AddLessonAsync(course, chapterId, lesson);
 
             return NoContent();
         }
@@ -199,7 +199,7 @@ namespace Catalog.API.Controllers
 
             var section = _mapper.Map<Section>(createSectionDto);
 
-            await _coursesRepository.AddSectionAsync(courseId, chapterId, lessonId, section);
+            await _coursesRepository.AddSectionAsync(course, chapterId, lessonId, section);
 
             return NoContent();
         }

@@ -21,6 +21,6 @@ namespace Catalog.Domain.Dtos
         public List<ChapterDto> Chapters { get; set; } = new List<ChapterDto>();
         public List<ReviewDto> Reviews { get; set; } = new List<ReviewDto>();
         public List<string> SkillsToGain { get; set; } = new List<string>();
-        public List<FaqDto> FAQs { get; set; } = new List<FaqDto>();
+        public List<FaqDto> Faqs { get; set; } = new List<FaqDto>();
     }
 }

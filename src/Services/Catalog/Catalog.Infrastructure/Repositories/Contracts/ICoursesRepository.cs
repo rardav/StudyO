@@ -10,7 +10,7 @@ namespace Catalog.Infrastructure.Repositories.Contracts
         Task UpdateAsync(Course course);
         Task RemoveAsync(Guid id);
         Task AddChapterAsync(Guid courseId, Chapter chapter);
-        Task AddLessonAsync(Guid courseId, Guid chapterId, Lesson lesson);
-        Task AddSectionAsync(Guid courseId, Guid chapterId, Guid lessonId, Section section);
+        Task AddLessonAsync(Course course, Guid chapterId, Lesson lesson);
+        Task AddSectionAsync(Course course, Guid chapterId, Guid lessonId, Section section);
     }
 }

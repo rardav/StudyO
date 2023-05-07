@@ -13,7 +13,7 @@
         public string Prerequisites { get; set; } = string.Empty;
 
         public List<string> SkillsToGain { get; set; } = new List<string>();
-        public List<FaqDto> FAQs { get; set; } = new List<FaqDto>();
+        public List<FaqDto> Faqs { get; set; } = new List<FaqDto>();
     }
 }
 

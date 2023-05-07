@@ -1,4 +1,5 @@
 ﻿using Aggregator.Models;
+using Aggregator.Services;
 using Aggregator.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,6 +22,19 @@ namespace Aggregator.Controllers
             var courses = await _catalogService.GetCourses();
 
             return Ok(courses);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ClassModel>> GetCourse(Guid id)
+        {
+            var clss = await _catalogService.GetCourse(id);
+
+            if (clss == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(clss);
         }
     }
 }
