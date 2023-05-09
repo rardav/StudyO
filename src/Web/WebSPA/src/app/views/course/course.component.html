@@ -37,7 +37,7 @@
                     </div>
                     <div class="flex flex-col">
                         <dt class="text-base leading-7 text-gray-300">Prerequisites</dt>
-                        <dd class="text-2xl font-bold leading-9 tracking-tight text-white">{{level[course.level]}}</dd>
+                        <dd class="text-2xl font-bold leading-9 tracking-tight text-white">{{course.prerequisites}}</dd>
                     </div>
                     <div class="flex flex-col">
                         <dt class="text-base leading-7 text-gray-300">Subject</dt>
@@ -55,14 +55,19 @@
     </div>
 
     <div class="max-w-2xl mx-auto bg-white p-16 rounded">
-        
-<ul class="mb-8 space-y-4 text-left text-gray-500 dark:text-gray-400">
-    <li *ngFor="let skill of course?.skillsToGain" class="flex items-center space-x-3">
-        <!-- Icon -->
-        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-        <span>{{skill}}</span>
-    </li>
-</ul>
+        <ul class="mb-8 space-y-4 text-left text-gray-500 dark:text-gray-400">
+            <h2 class="text-4xl font-extrabold">Skills you'll gain</h2>
+            <li *ngFor="let skill of course?.skillsToGain" class="flex items-center space-x-3">
+                <!-- Icon -->
+                <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
+                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <span>{{skill}}</span>
+            </li>
+        </ul>
 
     </div>
 
@@ -76,14 +81,16 @@
                     </div>
                 </div>
                 <div class="hidden sm:flex sm:flex-col sm:items-end">
-                    <p class="text-sm leading-6 text-gray-900">{{chapter.lessons.length}} lesson{{chapter.lessons.length === 1 ? "" : "s"}}</p>
+                    <p class="text-sm leading-6 text-gray-900">{{chapter.lessons.length}} lesson{{chapter.lessons.length
+                        === 1 ? "" : "s"}}</p>
                 </div>
             </li>
         </ul>
     </div>
 
     <div class="max-w-2xl mx-auto bg-white p-16 rounded">
-        <button type="button" class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Start</button>
+        <button type="button"
+            class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Start</button>
     </div>
 
     <div class="max-w-2xl mx-auto bg-white p-16 rounded">
@@ -91,12 +98,17 @@
             <li *ngFor="let faq of course?.faqs" class="flex justify-between gap-x-6 py-5">
                 <div class="flex gap-x-4">
                     <div class="min-w-0 flex-auto">
-                        <p class="text-sm font-semibold leading-6 text-gray-900">{{faq.question}}</p>
-                        <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{faq.answer}}</p>
+                        <p class="mb-3 text-gray-500 dark:text-gray-400">{{faq.question}}</p>
+                        <p class="mb-3 text-gray-500 dark:text-gray-400">{{faq.answer}}</p>
                     </div>
                 </div>
             </li>
         </ul>
+    </div>
+
+    <div class="max-w-2xl mx-auto bg-white p-16 rounded">
+        <h2 class="text-4xl font-extrabold">About the author</h2>
+        <p>bla bla bla</p>
     </div>
 </main>
 <app-footer></app-footer>
