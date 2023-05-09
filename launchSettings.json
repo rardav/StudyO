@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "aggregator": "StartDebugging",
+        "catalog.api": "StartDebugging",
+        "classes.api": "StartDebugging",
+        "identityserver": "StartDebugging",
+        "ocelotapigateway": "StartDebugging",
+        "identity.api": "StartDebugging"
+      }
+    }
+  }
+}

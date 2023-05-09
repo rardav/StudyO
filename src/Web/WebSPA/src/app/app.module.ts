@@ -16,6 +16,7 @@ import { CatalogComponent } from './views/catalog/catalog.component';
 import { CommonModule } from '@angular/common';
 import { CourseComponent } from './views/course/course.component';
 import { FlowbiteModule } from 'flowbite-angular';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { FlowbiteModule } from 'flowbite-angular';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    NgbModule,
     FontAwesomeModule,
     FlowbiteModule,
     CommonModule

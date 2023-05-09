@@ -34,8 +34,16 @@ services:
       context: .
       dockerfile: src/Gateways/Aggregator/Dockerfile
 
+  identity.api:
+    image: ${DOCKER_REGISTRY-}identityapi
+    build:
+      context: .
+      dockerfile: src/Services/Identity/Identity.API/Dockerfile
+
 volumes:
   catalog_data: 
   classes_data:
+
+
 
 
