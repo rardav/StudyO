@@ -10,7 +10,7 @@ namespace Catalog.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
+    [Authorize("ClientIdPolicy")]
     public class CoursesController : ControllerBase
     {
         private readonly ICoursesRepository _coursesRepository;

@@ -24,6 +24,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - MongoDbSettings__Host=catalogdb
       - MongoDbSettings__Port=27017
+      - ApiSettings__IdentityUrl=http://identity.api:80
     depends_on:
       - catalogdb
     ports:
@@ -75,7 +76,8 @@ services:
   identity.api:
     container_name: identity.api
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Developmen
+      - ApiSettings__IssuerUri=http://identity.api:80
       - ASPNETCORE_URLS=http://0.0.0.0:80
     ports:
       - "5050:80"
