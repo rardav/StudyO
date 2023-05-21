@@ -39,7 +39,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{EC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{9B330A24-5814-4528-A777-C7B6876ABABA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.API", "src\Services\Identity\Identity.API\Identity.API.csproj", "{539009E0-031D-4109-8DB6-B9423C46C636}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.API", "src\Services\Identity\Identity.API\Identity.API.csproj", "{539009E0-031D-4109-8DB6-B9423C46C636}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

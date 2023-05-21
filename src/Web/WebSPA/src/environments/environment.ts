@@ -5,7 +5,10 @@
 export const environment = {
   production: false,
   gatewayUrl: 'http://localhost:5000/',
-  aggregatorUrl: 'http://localhost:5001/'
+  aggregatorUrl: 'http://localhost:5001/',
+  identityUrl: 'http://localhost:5050/',
+  redirectUrl: 'http://localhost:4200/auth-callback',
+  postLogoutUrl: 'http://localhost:4200/auth/logout'
 };
 
 /*

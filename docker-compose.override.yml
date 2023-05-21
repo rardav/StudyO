@@ -76,7 +76,7 @@ services:
   identity.api:
     container_name: identity.api
     environment:
-      - ASPNETCORE_ENVIRONMENT=Developmen
+      - ASPNETCORE_ENVIRONMENT=Development
       - ApiSettings__IssuerUri=http://identity.api:80
       - ASPNETCORE_URLS=http://0.0.0.0:80
     ports:
@@ -84,3 +84,9 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  #web.spa:
+  #  container_name: web.spa
+  #  ports:
+  #    - "4200:80"
+

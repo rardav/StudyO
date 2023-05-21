@@ -29,27 +29,35 @@ namespace Identity.API
             },
             new Client
             {
-                ClientId = "web_spa",
+                ClientId = "webSpa",
                 ClientName = "Web SPA",
+
                 AllowedGrantTypes = GrantTypes.Code,
+                RequirePkce = true,
                 AllowRememberConsent = false,
                 RedirectUris = new List<string>()
                 {
-                    $"{_configuration.GetSection("ApiSettings").GetSection("ClientUri").Value}/login"
+                    $"{_configuration.GetSection("ApiSettings").GetSection("ClientUri").Value}/auth-callback"
                 },
                 PostLogoutRedirectUris = new List<string>()
                 {
-                    $"{_configuration.GetSection("ApiSettings").GetSection("ClientUri").Value}/login"
+                    $"{_configuration.GetSection("ApiSettings").GetSection("ClientUri").Value}"
                 },
                 ClientSecrets = new List<Secret>()
                 {
                     new Secret("secret".Sha256())
                 },
+                AllowedCorsOrigins = new List<string>()
+                {
+                    $"{_configuration.GetSection("ApiSettings").GetSection("ClientUri").Value}/auth/login"
+                },
                 AllowedScopes = new List<string>()
                 {
                     IdentityServerConstants.StandardScopes.OpenId,
-                    IdentityServerConstants.StandardScopes.Profile
-                }
+                    IdentityServerConstants.StandardScopes.Profile,
+                    "catalogApi"
+                },
+                AllowAccessTokensViaBrowser = true
             }
         };
 
@@ -74,12 +82,31 @@ namespace Identity.API
             new TestUser
             {
                 SubjectId = "1",
-                Username = "test",
-                Password = "test",
+                Username = "student1",
+                Password = "password",
                 Claims = new List<Claim>
                 {
-                    new Claim(JwtClaimTypes.GivenName, "test"),
-                    new Claim(JwtClaimTypes.FamilyName, "testescu"),
+                    new Claim("role", "student")
+                }
+            },
+            new TestUser
+            {
+                SubjectId = "2",
+                Username = "creator1",
+                Password = "password",
+                Claims = new List<Claim>
+                {
+                    new Claim("role", "creator")
+                }
+            },
+            new TestUser
+            {
+                SubjectId = "3",
+                Username = "admin1",
+                Password = "password",
+                Claims = new List<Claim>
+                {
+                    new Claim("role", "admin")
                 }
             }
         };

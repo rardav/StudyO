@@ -17,6 +17,7 @@ import { CommonModule } from '@angular/common';
 import { CourseComponent } from './views/course/course.component';
 import { FlowbiteModule } from 'flowbite-angular';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthConfigModule } from './_modules/auth/auth-config.module';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgbModule,
     FontAwesomeModule,
     FlowbiteModule,
-    CommonModule
+    CommonModule,
+    AuthConfigModule
   ],
   providers: [],
   bootstrap: [AppComponent]
