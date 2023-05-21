@@ -7,21 +7,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddAuthentication("Bearer")
-    .AddJwtBearer("Bearer", options =>
-    {
-        options.Authority = builder.Configuration.GetSection("ApiSettings").GetSection("IdentityUrl").Value; ;
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateAudience = false
-        };
-        options.RequireHttpsMetadata = false;
-    });
-
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("ClientIdPolicy", policy => policy.RequireClaim("client_id", "catalogClient"));
-});
 
 builder.Services.AddControllers(options =>
 {

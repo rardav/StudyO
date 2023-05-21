@@ -7,6 +7,9 @@ services:
   classesdb:
     image: mongo
 
+  usersdb:
+    image: postgres
+
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
     build:
@@ -22,6 +25,9 @@ services:
   mongo-express:
     image: mongo-express
 
+  pgadmin: 
+    image: dpage/pgadmin4
+
   ocelotapigateway:
     image: ${DOCKER_REGISTRY-}ocelotapigateway
     build:
@@ -34,21 +40,18 @@ services:
       context: .
       dockerfile: src/Gateways/Aggregator/Dockerfile
 
-  identity.api:
-    image: ${DOCKER_REGISTRY-}identityapi
+  users.api:
+    image: ${DOCKER_REGISTRY-}usersapi
     build:
       context: .
-      dockerfile: src/Services/Identity/Identity.API/Dockerfile
-
-  #web.spa:
-  #  image: ${DOCKER_REGISTRY-}webspa
-  #  build:
-  #    context: .
-  #    dockerfile: src/Web/WebSPA/Dockerfile
+      dockerfile: src/Services/Users/Users.API/Dockerfile
 
 volumes:
   catalog_data: 
   classes_data:
+  users_data:
+  pgadmin_data:
+
 
 
 

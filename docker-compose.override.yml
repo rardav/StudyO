@@ -18,6 +18,18 @@ services:
     volumes:
       - classes_data:/data/db
 
+  usersdb:
+    container_name: usersdb
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin1234
+      - POSTGRES_DB=UsersDb
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - users_data:/var/lib/postgresql/data
+
   catalog.api:
     container_name: catalog.api
     environment:
@@ -50,6 +62,17 @@ services:
       - catalogdb
     ports:
       - "8081:8081"
+ 
+  pgadmin:
+    container_name: pgadmin
+    environment : 
+      - PGADMIN_DEFAULT_EMAIL=admin@aspnetrun.com
+      - PGADMIN_DEFAULT_PASSWORD=admin1234
+    restart: always
+    ports:
+      - "8082:80"
+    volumes:
+      - pgadmin_data:/root/.pgadmin
 
   ocelotapigateway:
     container_name: ocelotapigateway
@@ -73,20 +96,11 @@ services:
     ports:
       - "5001:80"
 
-  identity.api:
-    container_name: identity.api
+  users.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ApiSettings__IssuerUri=http://identity.api:80
-      - ASPNETCORE_URLS=http://0.0.0.0:80
     ports:
-      - "5050:80"
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - "80"
 
-  #web.spa:
-  #  container_name: web.spa
-  #  ports:
-  #    - "4200:80"
+
 

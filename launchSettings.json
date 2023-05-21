@@ -9,7 +9,8 @@
         "classes.api": "StartDebugging",
         "identityserver": "StartDebugging",
         "ocelotapigateway": "StartDebugging",
-        "identity.api": "StartDebugging"
+        "identity.api": "StartDebugging",
+        "users.api": "StartDebugging"
       }
     }
   }
