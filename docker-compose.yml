@@ -8,7 +8,7 @@ services:
     image: mongo
 
   usersdb:
-    image: postgres
+    image: "mcr.microsoft.com/mssql/server:2022-latest"
 
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
@@ -21,6 +21,12 @@ services:
     build:
       context: .
       dockerfile: src/Services/Classes/Classes.API/Dockerfile
+
+  users.api:
+    image: ${DOCKER_REGISTRY-}usersapi
+    build:
+      context: .
+      dockerfile: src/Services/Users/Users.API/Dockerfile
 
   mongo-express:
     image: mongo-express
@@ -39,12 +45,6 @@ services:
     build:
       context: .
       dockerfile: src/Gateways/Aggregator/Dockerfile
-
-  users.api:
-    image: ${DOCKER_REGISTRY-}usersapi
-    build:
-      context: .
-      dockerfile: src/Services/Users/Users.API/Dockerfile
 
 volumes:
   catalog_data: 

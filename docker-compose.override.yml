@@ -20,15 +20,15 @@ services:
 
   usersdb:
     container_name: usersdb
-    environment:
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=admin1234
-      - POSTGRES_DB=UsersDb
     restart: always
+    user: root
+    environment:
+      SA_PASSWORD: "S3cur3P@ssW0rd!"
+      ACCEPT_EULA: Y
     ports:
-      - "5432:5432"
+      - "1433:1433"
     volumes:
-      - users_data:/var/lib/postgresql/data
+      - users_data:/var/opt/mssql/data
 
   catalog.api:
     container_name: catalog.api
@@ -52,6 +52,15 @@ services:
       - classesdb
     ports:
       - "8200:80"
+
+  users.api:
+    container_name: users.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - usersdb
+    ports:
+      - "8300:80"
        
   mongo-express:
     container_name: mongo-express
@@ -95,12 +104,6 @@ services:
       - classes.api
     ports:
       - "5001:80"
-
-  users.api:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    ports:
-      - "80"
 
 
 

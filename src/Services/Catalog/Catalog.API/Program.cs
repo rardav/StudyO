@@ -1,7 +1,4 @@
 using Catalog.Infrastructure.Extensions;
-using Microsoft.IdentityModel.Logging;
-using Microsoft.IdentityModel.Tokens;
-using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +16,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper();
 builder.Services.AddMongo();
 builder.Services.AddRepositories();
-
+builder.Services.AddJwtAuthentication(builder.Configuration);
 
 var app = builder.Build();
 
@@ -32,8 +29,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 
     app.UseDeveloperExceptionPage();
-    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-    IdentityModelEventSource.ShowPII = true;
 }
 
 app.UseAuthentication();

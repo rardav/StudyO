@@ -3,9 +3,12 @@ using Catalog.Infrastructure.Profiles;
 using Catalog.Infrastructure.Repositories;
 using Catalog.Infrastructure.Repositories.Contracts;
 using Catalog.Infrastructure.Settings;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
+using System.Text;
 
 namespace Catalog.Infrastructure.Extensions
 {
@@ -50,6 +53,23 @@ namespace Catalog.Infrastructure.Extensions
             var mapper = mapperConfig.CreateMapper();
 
             services.AddSingleton(mapper);
+
+            return services;
+        }
+
+        public static IServiceCollection AddJwtAuthentication(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["UsersTokenKey"])),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+                });
 
             return services;
         }
