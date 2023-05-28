@@ -1,53 +1,31 @@
 <footer
-  class="pb-6"
-  [ngClass]="absolute ? 'absolute w-full bottom-0 bg-slate-800' : 'relative'"
+  class="pb-6 bg-slate-800"
+  [ngClass]="absolute ? 'absolute w-full bottom-0 ' : 'relative'"
 >
   <div class="container mx-auto px-4">
     <hr class="mb-6 border-b-1 border-blueGray-600" />
     <div class="flex flex-wrap items-center md:justify-between justify-center">
       <div class="w-full md:w-4/12 px-4">
         <div
-          class="text-sm font-semibold py-1 text-center md:text-left"
+          class="text-lg font-semibold py-1 md:text-left text-slate-50"
         >
-          Copyright © {{ date }}
-          <a
-            href="https://www.creative-tim.com?ref=na-footer-small"
-            class="text-white hover:text-blueGray-300 text-sm font-semibold py-1"
-          >
-            Creative Tim
-          </a>
+          {{ date }}
         </div>
       </div>
       <div class="w-full md:w-8/12 px-4">
-        <ul class="flex flex-wrap list-none md:justify-end justify-center">
-          <li>
-            <a
-              href="https://www.creative-tim.com?ref=na-footer-small"
-              class="hover:text-blueGray-300 text-sm font-semibold block py-1 px-3"
-            >
-              Creative Tim
-            </a>
-          </li>
+        <ul class="flex flex-wrap list-none md:justify-end justify-center text-slate-50">
           <li>
             <a
               href="https://www.creative-tim.com/presentation?ref=na-footer-small"
-              class="hover:text-blueGray-300 text-sm font-semibold block py-1 px-3"
+              class="text-lg font-semibold block py-1 px-3 hover:text-cyan-400"
             >
               About Us
             </a>
           </li>
           <li>
             <a
-              href="http://blog.creative-tim.com?ref=na-footer-small"
-              class="hover:text-blueGray-300 text-sm font-semibold block py-1 px-3"
-            >
-              Blog
-            </a>
-          </li>
-          <li>
-            <a
               href="https://github.com/creativetimofficial/notus-angular/blob/main/LICENSE.md?ref=creativetim"
-              class="hover:text-blueGray-300 text-sm font-semibold block py-1 px-3"
+              class="text-lg font-semibold block py-1 px-3 hover:text-cyan-400"
             >
               MIT License
             </a>

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { OidcSecurityService } from 'angular-auth-oidc-client';
 
 @Component({
   selector: 'app-login',
@@ -8,13 +7,8 @@ import { OidcSecurityService } from 'angular-auth-oidc-client';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public oidcSecurityService: OidcSecurityService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
-
-  login() {
-    this.oidcSecurityService.authorize();
-  }
-
 }
