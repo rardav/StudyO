@@ -1,39 +1,51 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User, UserManager } from 'oidc-client';
 import { environment } from 'src/environments/environment';
+import { map } from 'rxjs/operators';
+import { User } from '../_models/user';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private userManager = new UserManager({
-    authority: environment.identityUrl,
-    client_id: 'webSpa',
-    redirect_uri: environment.redirectUrl,
-    response_type: 'code',
-    scope: 'openid profile catalogApi',
-    post_logout_redirect_uri: environment.postLogoutUrl,
-  });
-  
-  async login() {
-    const user = await this.userManager.signinRedirect();
-    return user;
+  baseUrl = environment.usersUrl;
+  private currentUserSource = new BehaviorSubject<User | null>(null);
+  currentUser$ = this.currentUserSource.asObservable();
+
+  constructor(private http: HttpClient) {}
+
+  login(model: any) {
+    return this.http.post<User>(this.baseUrl + 'api/users/login', model).pipe(
+      map((response: User) => {
+        const user = response;
+        if (user) {
+          localStorage.setItem('user', JSON.stringify(user));
+          this.currentUserSource.next(user);
+        }
+      })
+    )
   }
 
-  async completeLogin(): Promise<User> {
-    const user = await this.userManager.signinRedirectCallback();
-    return user;
+  register(model: any) {
+    return this.http.post<User>(this.baseUrl + 'api/users/register', model).pipe(
+      map(user => {
+        if (user) {
+          localStorage.setItem('user', JSON.stringify(user));
+          this.currentUserSource.next(user);
+        }
+
+        return user;
+      })
+    )
   }
 
-  async logout(): Promise<void> {
-    await this.userManager.signoutRedirect();
+  setCurrentUser(user: User){
+    this.currentUserSource.next(user);
   }
 
-  async completeLogout(): Promise<void> {
-    await this.userManager.signoutRedirectCallback();
-  }
-
-  getUser() {
-    return this.userManager.getUser();
+  logout() {
+    localStorage.removeItem('user');
+    this.currentUserSource.next(null);
   }
 }

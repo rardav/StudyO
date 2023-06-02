@@ -16,6 +16,15 @@ builder.Services.AddAutoMapper();
 builder.Services.AddDatabase(builder.Configuration);
 builder.Services.AddRepositories();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowOrigin", builder => builder.WithOrigins("http://localhost:4200")
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        .AllowCredentials()
+        .SetIsOriginAllowed((host) => true));
+});
+
 
 var app = builder.Build();
 
@@ -26,11 +35,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-using (var scope = app.Services.CreateScope())
-{
-    var dataContext = scope.ServiceProvider.GetRequiredService<UsersContext>();
-    dataContext.Database.Migrate();
-}
+//using (var scope = app.Services.CreateScope())
+//{
+//    var dataContext = scope.ServiceProvider.GetRequiredService<UsersContext>();
+//    dataContext.Database.Migrate();
+//}
+
+app.UseCors("AllowOrigin");
 
 app.UseAuthorization();
 

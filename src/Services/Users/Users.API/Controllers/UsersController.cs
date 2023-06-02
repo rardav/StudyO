@@ -57,7 +57,7 @@ namespace Users.API.Controllers
         {
             var user = await _usersRepository.GetUserByEmail(loginDto.Email);
 
-            if (user == null) return Unauthorized();
+            if (user == null) return Unauthorized("Incorrect email and/or password.");
 
             using var hmac = new HMACSHA512(user.PasswordSalt);
 
@@ -65,7 +65,7 @@ namespace Users.API.Controllers
 
             for(int i = 0; i < computedHash.Length; i++)
             {
-                if (computedHash[i] != user.PasswordHash[i]) return Unauthorized();
+                if (computedHash[i] != user.PasswordHash[i]) return Unauthorized("Incorrect email and/or password.");
             }
 
             var userDto = _mapper.Map<UserDto>(user);

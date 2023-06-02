@@ -23,13 +23,6 @@ namespace Users.Infrastucture.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<User> GetAsync(Guid id)
-        {
-            var user = _dbContext.Users.FirstOrDefaultAsync(user => user.Id.Equals(id));
-
-            return user;
-        }
-
         public async Task<User> Register(RegisterDto registerDto)
         {
             using var hmac = new HMACSHA512();
@@ -37,6 +30,8 @@ namespace Users.Infrastucture.Repositories
             var user = new User
             {
                 Email = registerDto.Email.ToLower(),
+                FirstName = registerDto.FirstName,
+                LastName = registerDto.LastName,
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
                 PasswordSalt = hmac.Key,
                 DateOfRegister = DateTime.UtcNow

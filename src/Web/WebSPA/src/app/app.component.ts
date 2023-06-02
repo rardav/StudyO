@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginResponse, OidcSecurityService } from 'angular-auth-oidc-client';
+import { AuthService } from './_services/auth.service';
+import { User } from './_models/user';
 
 @Component({
   selector: 'app-root',
@@ -9,17 +10,19 @@ import { LoginResponse, OidcSecurityService } from 'angular-auth-oidc-client';
 export class AppComponent implements OnInit{
   title = 'WebSPA';
 
-  constructor(public oidcSecurityService: OidcSecurityService) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    this.oidcSecurityService.checkAuth().subscribe((loginResponse: LoginResponse) => {
-      const { isAuthenticated, userData, accessToken, idToken, configId } = loginResponse;
 
-      console.log("is auth", isAuthenticated);
-    });
   }
 
-  logout() {
-    this.oidcSecurityService.logoff().subscribe((result) => console.log(result));
+  setCurrentUser() {
+    const userString = localStorage.getItem('user');
+    
+    if (!userString) return;
+
+    const user: User = JSON.parse(userString);
+
+    this.authService.setCurrentUser(user);
   }
 }
