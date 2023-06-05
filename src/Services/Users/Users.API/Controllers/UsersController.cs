@@ -37,6 +37,19 @@ namespace Users.API.Controllers
             return _mapper.Map<UserDto>(user);
         }
 
+        [HttpGet]
+        public async Task<ActionResult<UserDetailsDto>> GetByEmail([FromQuery] string email)
+        {
+            var user = await _usersRepository.GetUserByEmail(email);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return _mapper.Map<UserDetailsDto>(user);
+        }
+
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register([FromBody] RegisterDto registerDto)
         {

@@ -9,6 +9,7 @@ namespace Users.Infrastructure.Profiles
     {
         public UserProfile()
         {
+            CreateMap<User, UserDetailsDto>().ReverseMap();
             CreateMap<User, UserDto>().ReverseMap();
             CreateMap<User, RegisterDto>().ReverseMap();
         }

@@ -12,12 +12,16 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AuthComponent } from './layouts/auth/auth.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AuthNavbarComponent } from './components/navbars/auth-navbar/auth-navbar.component';
-import { CatalogComponent } from './views/catalog/catalog.component';
+import { CatalogAllComponent } from './views/catalog-all/catalog-all.component';
 import { CommonModule } from '@angular/common';
 import { CourseComponent } from './views/course/course.component';
 import { FlowbiteModule } from 'flowbite-angular';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { ProfileComponent } from './views/profile/profile.component';
+import { CatalogComponent } from './layouts/catalog/catalog.component';
+import { CardsHeaderComponent } from './components/cards-header/cards-header.component';
+import { CardComponent } from './components/card/card.component';
 
 
 @NgModule({
@@ -30,8 +34,12 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     AuthComponent,
     AuthNavbarComponent,
+    CatalogAllComponent,
+    CourseComponent,
+    ProfileComponent,
     CatalogComponent,
-    CourseComponent
+    CardsHeaderComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,

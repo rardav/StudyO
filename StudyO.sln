@@ -39,11 +39,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Users", "Users", "{ECCED8B8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{9B330A24-5814-4528-A777-C7B6876ABABA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Users.API", "src\Services\Users\Users.API\Users.API.csproj", "{9A26D644-9D47-46E1-A529-64DA1738B367}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Users.API", "src\Services\Users\Users.API\Users.API.csproj", "{9A26D644-9D47-46E1-A529-64DA1738B367}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Users.Domain", "src\Services\Users\Users.Domain\Users.Domain.csproj", "{8997B1EA-8D36-4AB4-97BC-7D19E9326F27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Users.Domain", "src\Services\Users\Users.Domain\Users.Domain.csproj", "{8997B1EA-8D36-4AB4-97BC-7D19E9326F27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Users.Infrastucture", "src\Services\Users\Users.Infrastucture\Users.Infrastucture.csproj", "{41AA9BCF-7892-4BD1-A901-52F5E7DBDBCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Users.Infrastructure", "src\Services\Users\Users.Infrastucture\Users.Infrastructure.csproj", "{41AA9BCF-7892-4BD1-A901-52F5E7DBDBCD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

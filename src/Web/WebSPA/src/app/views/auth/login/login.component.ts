@@ -9,7 +9,6 @@ import { AuthService } from 'src/app/_services/auth.service';
 })
 export class LoginComponent implements OnInit {
   model: any = {}
-  loggedIn = false;
 
   constructor(private authService: AuthService,
     private router: Router) { }
@@ -20,7 +19,6 @@ export class LoginComponent implements OnInit {
   login() {
     this.authService.login(this.model).subscribe({
       next: response => {
-        this.loggedIn = true;
 
         this.router.navigate(['/']);
       },

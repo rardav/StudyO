@@ -44,6 +44,13 @@ namespace Users.Infrastucture.Repositories
             return user;
         }
 
+        public Task<User> GetAsync(Guid id)
+        {
+            var user = _dbContext.Users.FirstOrDefaultAsync(user => user.Id.Equals(id));
+
+            return user;
+        }
+
         public async Task<bool> UserExists(string email)
         {
             return await _dbContext.Users.AnyAsync(user => user.Email.Equals(email));

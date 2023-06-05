@@ -12,7 +12,7 @@
         class="text-blueGray-700 text-2xl font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase line-through"
         href="#pablo"
       >
-        StudyO
+        StudyO 
       </a>
       <button
         aria-label="NavbarOpen"
@@ -40,12 +40,24 @@
             Catalog
           </a>
         </li>
+        <li class="flex items-center">
+          <a
+            class="hover:text-blueGray-500 text-blueGray-700 px-3 py-2 flex items-center text-xs uppercase font-bold"
+            href="catalog"
+          >
+            <i
+              class="text-blueGray-400 far fa-file-alt text-lg leading-lg mr-2"
+            ></i>
+            About
+          </a>
+        </li>
       </ul>
       <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
         <!--<li class="flex items-center">
           <app-index-dropdown class="block"></app-index-dropdown>
         </li>-->
-        <li class="flex items-center">
+        <li class="flex items-center" 
+          *ngIf="!(authService.currentUser$ | async)">
           <button
             class="bg-slate-800 text-slate-50 hover:bg-slate-50 hover:text-slate-800 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-2xl outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
             type="button"
@@ -53,6 +65,15 @@
           >
             <i class="fas fa-arrow-alt-circle-down"></i> Log in
           </button>
+        </li>
+        <li class="flex items-center" *ngIf="authService.currentUser$ | async">
+          <a
+            class="hover:text-blueGray-500 text-blueGray-700 flex items-center text-xs uppercase font-bold"
+            href="profile"
+          >
+            <img alt="..." src="assets/img/team-1-800x800.jpg" class="mt-1 shadow-lg rounded-full mx-auto w-14" />
+          </a>
+          
         </li>
       </ul>
     </div>

@@ -7,6 +7,7 @@ namespace Users.Infrastucture.Repositories.Contracts
     public interface IUsersRepository
     {
         Task<IEnumerable<UserDto>> GetAll();
+        Task<User> GetAsync(Guid id);
         Task<User> Register(RegisterDto registerDto);
         Task<User> GetUserByEmail(string email);
         Task<bool> UserExists(string email);

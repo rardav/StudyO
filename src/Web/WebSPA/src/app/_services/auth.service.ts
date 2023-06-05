@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { User } from '../_models/user';
 import { BehaviorSubject } from 'rxjs';
+import { UserDetails } from '../_models/userDetails';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +41,14 @@ export class AuthService {
     )
   }
 
+  getUser(email: string) {
+    return this.http.get<UserDetails>(this.baseUrl + 'api/users', {
+      params: {
+        email: email
+      }
+    })
+  }
+
   setCurrentUser(user: User){
     this.currentUserSource.next(user);
   }
@@ -47,5 +56,15 @@ export class AuthService {
   logout() {
     localStorage.removeItem('user');
     this.currentUserSource.next(null);
+  }
+
+  getCurrentUser() {
+    const userString = localStorage.getItem('user');
+    
+    if (!userString) return;
+
+    const user: User = JSON.parse(userString);
+
+    return user;
   }
 }
