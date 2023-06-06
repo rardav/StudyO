@@ -1,7 +1,7 @@
 <app-index-navbar></app-index-navbar>
 <main>
-    <div *ngIf="course" class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
-        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
+    <div *ngIf="course" class="relative isolate overflow-hidden bg-gray-900 py-16">
+        <img src="../../../assets/img/course.jpg"
             alt="" class="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center">
         <div class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl"
             aria-hidden="true">
@@ -46,41 +46,49 @@
                     </div>
                 </dl>
             </div>
+            <div class="flex max-w-2xl mx-auto justify-center rounded mt-10">
+                <button
+                    class="bg-red-600 active:bg-red-700 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none my-3 ease-linear transition-all duration-150"
+                    type="button">
+                    Enroll now
+                </button>
+            </div>
         </div>
     </div>
 
-    <div class="max-w-2xl mx-auto bg-white p-16 rounded">
-        <h2 class="text-4xl font-extrabold">About this course</h2>
-        <p class="mb-3 text-gray-500 dark:text-gray-400">{{course.longDescription}}</p>
+    <div class="flex flex-row" *ngIf="course">
+        <div class="max-w-4xl mx-auto bg-white p-16 pb-0 rounded">
+            <h2 class="text-4xl mb-4 font-bold">About this course</h2>
+            <p class="mb-3 text-gray-500 dark:text-gray-400">{{course.longDescription}}</p>
+        </div>
+    
+        <div class="max-w-2xl mx-auto bg-white p-16 pb-0 rounded">
+            <h2 class="text-4xl mb-4 font-bold">Skills you'll gain</h2>
+            <ul class="mb-8 space-y-4 text-left">
+                <li *ngFor="let skill of course?.skillsToGain" class="flex items-center space-x-3">
+                    <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
+                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <span>{{skill}}</span>
+                </li>
+            </ul>
+        </div>
     </div>
+    
 
-    <div class="max-w-2xl mx-auto bg-white p-16 rounded">
-        <ul class="mb-8 space-y-4 text-left text-gray-500 dark:text-gray-400">
-            <h2 class="text-4xl font-extrabold">Skills you'll gain</h2>
-            <li *ngFor="let skill of course?.skillsToGain" class="flex items-center space-x-3">
-                <!-- Icon -->
-                <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
-                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"></path>
-                </svg>
-                <span>{{skill}}</span>
-            </li>
-        </ul>
-
-    </div>
-
-    <div class="max-w-2xl mx-auto bg-white p-16 rounded">
+    <div class="max-w-5xl mx-auto bg-white p-16 rounded">
+        <h2 class="text-4xl mb-4 font-bold">What you'll learn</h2>
         <ul role="list" class="divide-y divide-gray-100">
-            <li *ngFor="let chapter of course?.chapters" class="flex justify-between gap-x-6 py-5">
-                <div class="flex gap-x-4">
+            <li *ngFor="let chapter of course?.chapters" class="flex justify-between">
+                <div class="flex gap-x-4 my-3">
                     <div class="min-w-0 flex-auto">
                         <p class="text-sm font-semibold leading-6 text-gray-900">{{chapter.title}}</p>
-                        <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{chapter.description}}</p>
                     </div>
                 </div>
-                <div class="hidden sm:flex sm:flex-col sm:items-end">
+                <div class="hidden sm:flex sm:flex-col sm:items-end my-3">
                     <p class="text-sm leading-6 text-gray-900">{{chapter.lessons.length}} lesson{{chapter.lessons.length
                         === 1 ? "" : "s"}}</p>
                 </div>
@@ -88,40 +96,22 @@
         </ul>
     </div>
 
-    <div class="max-w-2xl mx-auto bg-white p-16 rounded">
-        <button type="button"
-            class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Start</button>
-    </div>
-
-    <div class="max-w-2xl mx-auto bg-white p-16 rounded">
-        <div class="accordion" id="accordionExample">
-            <div *ngFor="let faq of course?.faqs" class="accordion-item">
-              <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    {{faq.question}}
-                </button>
-              </h2>
-              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    {{faq.answer}}
-                </div>
-              </div>
-            </div>
-          </div>
+    <div class="max-w-5xl mx-auto bg-white p-16 pt-0 rounded">
+        <h2 class="text-4xl mb-4 font-bold">Frequently asked questions</h2>
         <ul role="list" class="divide-y divide-gray-100">
-            <li *ngFor="let faq of course?.faqs" class="flex justify-between gap-x-6 py-5">
+            <li *ngFor="let faq of course?.faqs" class="flex justify-between gap-x-6">
                 <div class="flex gap-x-4">
                     <div class="min-w-0 flex-auto">
-                        <p class="mb-3 text-gray-500 dark:text-gray-400">{{faq.question}}</p>
-                        <p class="mb-3 text-gray-500 dark:text-gray-400">{{faq.answer}}</p>
+                        <p class="mb-3 font-semibold text-gray-900 mt-3">{{faq.question}}</p>
+                        <p class="mb-3 text-gray-500 ">{{faq.answer}}</p>
                     </div>
                 </div>
             </li>
         </ul>
     </div>
 
-    <div class="max-w-2xl mx-auto bg-white p-16 rounded">
-        <h2 class="text-4xl font-extrabold">About the author</h2>
+    <div class="max-w-5xl mx-auto bg-white p-16 pt-0 rounded">
+        <h2 class="text-4xl font-bold">About the author</h2>
         <p>bla bla bla</p>
     </div>
 </main>

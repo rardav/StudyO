@@ -14,12 +14,15 @@ export class CatalogAllComponent implements OnInit{
   subject: typeof Subject = Subject;
   language: typeof Language = Language;
 
+  levels: string[] = Object.keys(Level).filter(item => isNaN(Number(item)));
+  subjects: string[] = Object.keys(Subject).filter(item => isNaN(Number(item)));
+  languages: string[] = Object.keys(Language).filter(item => isNaN(Number(item)));
+
   constructor(private coursesService: CoursesService){}
 
   ngOnInit(): void {
     this.coursesService.getCourses().subscribe(courses => {
       this.courses = courses;
-      
     })
   }
 
