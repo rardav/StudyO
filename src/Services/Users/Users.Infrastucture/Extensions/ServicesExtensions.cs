@@ -33,9 +33,6 @@ namespace Users.Infrastructure.Extensions
             services.AddDbContext<UsersContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("Default")));
 
-
-            //services.AddDatabaseDeveloperPageExceptionFilter();
-
             return services;
         }
 

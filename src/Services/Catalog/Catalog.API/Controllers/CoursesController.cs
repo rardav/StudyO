@@ -3,7 +3,6 @@ using Catalog.Domain.Dtos;
 using Catalog.Domain.Dtos.CrudDtos;
 using Catalog.Domain.Entities;
 using Catalog.Infrastructure.Repositories.Contracts;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.API.Controllers
