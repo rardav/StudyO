@@ -1,6 +1,6 @@
 <app-index-navbar></app-index-navbar>
 <main>
-    <app-cards-header></app-cards-header>
+    <app-cards-header *ngIf="authService.currentUser$ | async"></app-cards-header>
     <router-outlet></router-outlet>
 </main>
 

@@ -1,21 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Course, Language, Level, Subject } from 'src/app/_models/course';
+import { Course } from 'src/app/_models/course';
 import { AuthService } from 'src/app/_services/auth.service';
 import { CoursesService } from 'src/app/_services/courses.service';
 
 @Component({
-  selector: 'app-course',
-  templateUrl: './course.component.html',
-  styleUrls: ['./course.component.css']
+  selector: 'app-ongoing-course',
+  templateUrl: './ongoing-course.component.html',
+  styleUrls: ['./ongoing-course.component.css']
 })
-
-export class CourseComponent implements OnInit{
+export class OngoingCourseComponent implements OnInit {
   course: Course;
-
-  level: typeof Level = Level;
-  subject: typeof Subject = Subject;
-  language: typeof Language = Language;
 
   constructor(private route: ActivatedRoute,
     private coursesService: CoursesService,
@@ -29,10 +24,7 @@ export class CourseComponent implements OnInit{
 
     this.coursesService.getCourse(courseId).subscribe( course => {
       this.course = course;
+      console.log(this.course);
     })
-  }
-
-  startCourse(): void {
-    this.router.navigate(['/catalog/start/' + this.course.id]);
   }
 }

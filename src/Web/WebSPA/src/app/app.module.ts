@@ -22,6 +22,9 @@ import { ProfileComponent } from './views/profile/profile.component';
 import { CatalogComponent } from './layouts/catalog/catalog.component';
 import { CardsHeaderComponent } from './components/cards-header/cards-header.component';
 import { CardComponent } from './components/card/card.component';
+import { OngoingCourseComponent } from './layouts/ongoing-course/ongoing-course.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { ReviewComponent } from './views/review/review.component';
 
 
 @NgModule({
@@ -39,7 +42,10 @@ import { CardComponent } from './components/card/card.component';
     ProfileComponent,
     CatalogComponent,
     CardsHeaderComponent,
-    CardComponent
+    CardComponent,
+    OngoingCourseComponent,
+    SidebarComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,

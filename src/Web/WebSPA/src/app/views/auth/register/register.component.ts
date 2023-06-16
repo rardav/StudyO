@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   register() {
     this.authService.register(this.model).subscribe({
       next: response => {
-        this.router.navigateByUrl('/')
+        this.router.navigate(['/']);
       },
       error: error => console.log(error)
     })

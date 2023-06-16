@@ -17,15 +17,12 @@
             </div>
         </div>
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
-            <div class="mx-auto max-w-2xl lg:mx-0">
+            <div class="mx-auto max-w-2xl lg:mx-0 text-center">
                 <h2 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">{{course.title}}</h2>
                 <p class="mt-6 text-lg leading-8 text-gray-300">{{course.shortDescription}}</p>
             </div>
             <div class="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
-                <div
-                    class="grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
-                    <p>Rating</p>
-                </div>
+                
                 <dl class="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
                     <div class="flex flex-col">
                         <dt class="text-base leading-7 text-gray-300">Skill level</dt>
@@ -49,7 +46,9 @@
             <div class="flex max-w-2xl mx-auto justify-center rounded mt-10">
                 <button
                     class="bg-red-600 active:bg-red-700 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none my-3 ease-linear transition-all duration-150"
-                    type="button">
+                    type="button"
+                    (click)="startCourse()"
+                    *ngIf="authService.currentUser$ | async">
                     Enroll now
                 </button>
             </div>
