@@ -25,6 +25,7 @@ import { CardComponent } from './components/card/card.component';
 import { OngoingCourseComponent } from './layouts/ongoing-course/ongoing-course.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ReviewComponent } from './views/review/review.component';
+import { AddCourseComponent } from './views/add-course/add-course.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { ReviewComponent } from './views/review/review.component';
     CardComponent,
     OngoingCourseComponent,
     SidebarComponent,
-    ReviewComponent
+    ReviewComponent,
+    AddCourseComponent
   ],
   imports: [
     BrowserModule,

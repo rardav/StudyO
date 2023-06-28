@@ -1,5 +1,9 @@
+import { Section } from "./section"
+
 export interface Lesson {
     id: string,
     title: string,
-    orderNumber: number
+    image: string,
+    order: string,
+    sections: Section[]
 }

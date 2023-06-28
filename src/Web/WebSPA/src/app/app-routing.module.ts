@@ -10,6 +10,7 @@ import { CatalogComponent } from './layouts/catalog/catalog.component';
 import { CatalogAllComponent } from './views/catalog-all/catalog-all.component';
 import { OngoingCourseComponent } from './layouts/ongoing-course/ongoing-course.component';
 import { ReviewComponent } from './views/review/review.component';
+import { AddCourseComponent } from './views/add-course/add-course.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'catalog/start/:id', component: OngoingCourseComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'review', component: ReviewComponent },
+  { path: 'add-course', component: AddCourseComponent },
   { path: "**", redirectTo: "", pathMatch: "full" },
 ];
 
