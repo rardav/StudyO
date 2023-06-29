@@ -11,7 +11,8 @@ import { CoursesService } from 'src/app/_services/courses.service';
   styleUrls: ['./ongoing-course.component.css']
 })
 export class OngoingCourseComponent implements OnInit {
-  course: Course;
+  course: Course = {} as Course;
+  lessons: Lesson[] = [];
   currentLesson: Lesson;
 
   constructor(private route: ActivatedRoute,
@@ -24,10 +25,22 @@ export class OngoingCourseComponent implements OnInit {
   ngOnInit(): void {
     let courseId = this.route.snapshot.paramMap.get('id') || '';
 
-    this.coursesService.getCourse(courseId).subscribe( course => {
-      this.course = course;
-      console.log(this.course)
+    this.coursesService.getCourse(courseId).subscribe({
+      next: response => {
+        this.course = response;
+        
+        this.course.chapters.forEach(chapter => {
+          chapter.lessons.forEach(lesson => {
+            this.lessons.push(lesson);
+          })
+        });
+
+        this.currentLesson = this.lessons[0];
+        console.log(this.lessons)
+      },
+      error: error => console.log(error)
     })
+
   }
 
   ngOnDestroy() {
@@ -36,6 +49,14 @@ export class OngoingCourseComponent implements OnInit {
 
   switchLesson(lesson: Lesson) {
     this.currentLesson = lesson as Lesson;
-    console.log(this.currentLesson)
   }
+
+  nextLesson() {
+    this.currentLesson = this.lessons[this.lessons.indexOf(this.currentLesson)+1];
+  }
+
+  finish() {
+    this.router.navigate(['/review/' + this.course.id]);
+  }
+
 }

@@ -1,5 +1,8 @@
 export interface Review {
     id: string,
-    text: string,
+    title: string,
+    authorEmail: string;
+    description: string,
+    courseId: string,
     rating: number
 }

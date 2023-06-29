@@ -1,8 +1,8 @@
 <app-index-navbar></app-index-navbar>
 <main>
     <div *ngIf="course" class="relative isolate overflow-hidden bg-gray-900 py-16">
-        <img src="../../../assets/img/course.jpg"
-            alt="" class="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center">
+        <img src="../../../assets/img/course.jpg" alt=""
+            class="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center">
         <div class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl"
             aria-hidden="true">
             <div class="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-20"
@@ -22,7 +22,7 @@
                 <p class="mt-6 text-lg leading-8 text-gray-300">{{course.shortDescription}}</p>
             </div>
             <div class="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
-                
+
                 <dl class="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
                     <div class="flex flex-col">
                         <dt class="text-base leading-7 text-gray-300">Skill level</dt>
@@ -46,9 +46,7 @@
             <div class="flex max-w-2xl mx-auto justify-center rounded mt-10">
                 <button
                     class="bg-red-600 active:bg-red-700 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none my-3 ease-linear transition-all duration-150"
-                    type="button"
-                    (click)="startCourse()"
-                    *ngIf="authService.currentUser$ | async">
+                    type="button" (click)="startCourse()" *ngIf="authService.currentUser$ | async">
                     Enroll now
                 </button>
             </div>
@@ -60,7 +58,7 @@
             <h2 class="text-4xl mb-4 font-bold">About this course</h2>
             <p class="mb-3 text-gray-500 dark:text-gray-400">{{course.longDescription}}</p>
         </div>
-    
+
         <div class="max-w-2xl mx-auto bg-white p-16 pb-0 rounded">
             <h2 class="text-4xl mb-4 font-bold">Skills you'll gain</h2>
             <ul class="mb-8 space-y-4 text-left">
@@ -76,7 +74,7 @@
             </ul>
         </div>
     </div>
-    
+
 
     <div class="max-w-5xl mx-auto bg-white p-16 rounded">
         <h2 class="text-4xl mb-4 font-bold">What you'll learn</h2>

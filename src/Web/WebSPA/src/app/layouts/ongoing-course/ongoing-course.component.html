@@ -1,4 +1,4 @@
-<nav *ngIf="course" class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800">
+<nav *ngIf="course" class="fixed top-0 z-50 w-full bg-white border-b border-gray-700 dark:bg-gray-800">
     <div class="px-3 py-3 lg:px-5 lg:pl-3">
         <div class="flex items-center justify-between">
             <div class="flex items-center justify-start">
@@ -25,9 +25,9 @@
 </nav>
 
 <aside id="logo-sidebar"
-    class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 :bg-gray-800"
+    class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-700 sm:translate-x-0 :bg-gray-800"
     aria-label="Sidebar"
-    *ngIf="course">
+    *ngIf="course && currentLesson">
     <div class="h-full px-3 pb-4 overflow-y-auto bg-white">
         <ul class="space-y-2 font-medium">
             <li *ngFor="let chapter of course.chapters; let i = index;">
@@ -35,7 +35,8 @@
                 <hr>
                 <ul>
                     <li *ngFor="let lesson of chapter.lessons; let j = index;">
-                        <a (click)="switchLesson(lesson)" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100">
+                        <a (click)="switchLesson(lesson)" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100" 
+                            [ngClass]="{'bg-slate-300': lesson.id == currentLesson.id}">
                             <span class="ml-3">{{i+1}}.{{j+1}}. {{lesson.title}}</span>
                         </a>
                     </li>
@@ -45,10 +46,10 @@
     </div>
 </aside>
 
-<div class="p-4 sm:ml-64" *ngIf="currentLesson">
-    <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg mt-14">
+<div class="p-4 sm:ml-64 h-max" *ngIf="currentLesson">
+    <div class="p-4 border-2 border-gray-700 border-dashed rounded-lg mt-14">
         <div class="grid grid-cols-2 gap-4 mb-4">
-            <div class="rounded bg-gray-50 p-10">
+            <div class="rounded bg-gray-800 p-10">
                 <div *ngFor="let section of currentLesson.sections">
                     <p class="text-2xl text-gray-400">{{section.content}}</p>
                     <br> 
@@ -58,5 +59,21 @@
                 <img [src]="currentLesson.image" alt="if">
             </div>
         </div>
+        <div class="text-center mt-6">
+            <button
+              class="bg-slate-800 text-white active:bg-slate-800 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-30 ease-linear transition-all duration-150"
+              type="button"
+              *ngIf="lessons.indexOf(currentLesson) != lessons.length-1"
+              (click)="nextLesson()">
+              Next
+            </button>
+            <button
+              class="bg-slate-800 text-white active:bg-slate-800 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-30 ease-linear transition-all duration-150"
+              type="button"
+              *ngIf="lessons.indexOf(currentLesson) == lessons.length-1"
+              (click)="finish()">
+              Finish
+            </button>
+          </div>
     </div>
 </div>

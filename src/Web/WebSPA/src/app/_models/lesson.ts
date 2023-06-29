@@ -4,6 +4,6 @@ export interface Lesson {
     id: string,
     title: string,
     image: string,
-    order: string,
+    orderNumber: string,
     sections: Section[]
 }
