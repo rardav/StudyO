@@ -9,14 +9,14 @@ services:
     volumes:
       - catalog_data:/data/db
 
-  classesdb:
-    container_name: classesdb
+  reviewsdb:
+    container_name: reviewsdb
     restart: always
     command: mongod --port 27018
     ports:
       - "27018:27018"
     volumes:
-      - classes_data:/data/db
+      - reviews_data:/data/db
 
   usersdb:
     container_name: usersdb
@@ -36,20 +36,19 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - MongoDbSettings__Host=catalogdb
       - MongoDbSettings__Port=27017
-      - ApiSettings__IdentityUrl=http://identity.api:80
     depends_on:
       - catalogdb
     ports:
       - "8100:80"
 
-  classes.api:
-    container_name: classes.api
+  reviews.api:
+    container_name: reviews.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - MongoDbSettings__Host=classesdb
+      - MongoDbSettings__Host=reviewsdb
       - MongoDbSettings__Port=27018
     depends_on:
-      - classesdb
+      - reviewsdb
     ports:
       - "8200:80"
 
@@ -66,7 +65,7 @@ services:
     container_name: mongo-express
     environment:
       - ME_CONFIG_OPTIONS_EDITORTHEME=ambiance
-      - ME_CONFIG_MONGODB_URL=mongodb://catalogdb:27017
+      - ME_CONFIG_MONGODB_URL=mongodb://reviewsdb:27018
     depends_on:
       - catalogdb
     ports:
@@ -89,7 +88,6 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     depends_on:
       - catalog.api
-      - classes.api
     ports:
       - "5000:80"
 
@@ -98,12 +96,9 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ApiSettings__CatalogUrl=http://catalog.api
-      - ApiSettings__ClassesUrl=http://classes.api
+      - ApiSettings__ReviewsUrl=http://reviews.api
     depends_on:
       - catalog.api
-      - classes.api
     ports:
       - "5001:80"
-
-
 

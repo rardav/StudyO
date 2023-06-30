@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';import { ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';import { ActivatedRoute, Router } from '@angular/router';
 import { Course } from 'src/app/_models/course';
 import { Review } from 'src/app/_models/review';
 import { AuthService } from 'src/app/_services/auth.service';
 import { CoursesService } from 'src/app/_services/courses.service';
+import { ReviewsService } from 'src/app/_services/reviews.service';
 
 @Component({
   selector: 'app-review',
@@ -15,8 +16,10 @@ export class ReviewComponent {
   review: Review = {} as Review;
 
   constructor(private route: ActivatedRoute,
+    private router: Router,
     private coursesService: CoursesService,
-    private authService: AuthService){}
+    private authService: AuthService,
+    private reviewsService: ReviewsService){}
 
   ngOnInit(): void {
     let courseId = this.route.snapshot.paramMap.get('id') || '';
@@ -33,6 +36,10 @@ export class ReviewComponent {
     this.review.courseId = this.course.id;
     this.review.authorEmail = this.authService.getCurrentUser()!.email;
 
-    console.log(this.review)
+    this.reviewsService.addReview(this.review).subscribe(response => {
+      console.log(response);
+    });
+
+    this.router.navigate(['/']);
   }
 }

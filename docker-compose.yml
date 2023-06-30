@@ -4,11 +4,11 @@ services:
   catalogdb:
     image: mongo
 
-  classesdb:
-    image: mongo
-
   usersdb:
     image: "mcr.microsoft.com/mssql/server:2022-latest"
+
+  reviewsdb:
+    image: mongo
 
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
@@ -16,11 +16,11 @@ services:
       context: .
       dockerfile: src/Services/Catalog/Catalog.API/Dockerfile
 
-  classes.api:
-    image: ${DOCKER_REGISTRY-}classesapi
+  reviews.api:
+    image: ${DOCKER_REGISTRY-}reviewsapi
     build:
       context: .
-      dockerfile: src/Services/Classes/Classes.API/Dockerfile
+      dockerfile: src/Services/Reviews/Reviews.API/Dockerfile
 
   users.api:
     image: ${DOCKER_REGISTRY-}usersapi
@@ -48,9 +48,10 @@ services:
 
 volumes:
   catalog_data: 
-  classes_data:
+  reviews_data:
   users_data:
   pgadmin_data:
+
 
 
 

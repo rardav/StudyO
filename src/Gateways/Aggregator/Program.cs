@@ -5,9 +5,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddHttpClient<IClassService, ClassService>(c =>
+builder.Services.AddHttpClient<IReviewsService, ReviewsService>(c =>
 {
-    c.BaseAddress = new Uri(builder.Configuration["ApiSettings:ClassesUrl"]);
+    c.BaseAddress = new Uri(builder.Configuration["ApiSettings:ReviewsUrl"]);
 });
 builder.Services.AddHttpClient<ICatalogService, CatalogService>(c =>
 {

@@ -1,6 +1,6 @@
-﻿namespace Aggregator.Models
+﻿namespace Reviews.Domain.Dtos
 {
-    public record ReviewModel
+    public class ReviewDto
     {
         public Guid Id { get; set; }
         public string AuthorEmail { get; set; }

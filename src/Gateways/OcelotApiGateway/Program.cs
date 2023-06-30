@@ -10,6 +10,7 @@ builder.Host.ConfigureAppConfiguration((hostingContext, appConfiguration) =>
     appConfiguration.AddJsonFile($"ocelot.{env.EnvironmentName}.json", true, true);
 });
 
+builder.Services.AddControllers();
 builder.Services.AddOcelot();
 builder.Services.AddCors(options =>
 {
@@ -20,7 +21,14 @@ builder.Services.AddCors(options =>
         .SetIsOriginAllowed((host) => true));
 });
 
+builder.Services.AddSwaggerForOcelot(builder.Configuration);
+
 var app = builder.Build();
+
+app.UseSwaggerForOcelotUI(options =>
+{
+    options.PathToSwaggerGenerator = "/swagger/docs";
+});
 
 app.UseCors("AllowOrigin");
 await app.UseOcelot();

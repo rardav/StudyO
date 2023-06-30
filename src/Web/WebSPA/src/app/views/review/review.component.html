@@ -86,9 +86,10 @@
 
                                 <div class="text-center mt-6">
                                     <button
-                                        class="bg-blueGray-800 text-slate-50 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                                        class="bg-blueGray-800 text-slate-50 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150 disabled:bg-slate-400"
                                         type="button"
-                                        (click)="save()">
+                                        (click)="save()"
+                                        [disabled]="review.title == undefined || review.description == undefined || review.rating == undefined">
                                         Save
                                     </button>
                                 </div>

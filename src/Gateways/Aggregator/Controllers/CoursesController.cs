@@ -1,5 +1,4 @@
 ﻿using Aggregator.Models;
-using Aggregator.Services;
 using Aggregator.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,10 +9,12 @@ namespace Aggregator.Controllers
     public class CoursesController : ControllerBase
     {
         private readonly ICatalogService _catalogService;
+        private readonly IReviewsService _reviewsService;
 
-        public CoursesController(ICatalogService catalogService)
+        public CoursesController(ICatalogService catalogService, IReviewsService reviewsService)
         {
             _catalogService = catalogService;
+            _reviewsService = reviewsService;
         }
 
         [HttpGet]
@@ -25,16 +26,18 @@ namespace Aggregator.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ClassModel>> GetCourse(Guid id)
+        public async Task<ActionResult<CourseModel>> GetCourse(Guid id)
         {
-            var clss = await _catalogService.GetCourse(id);
+            var course = await _catalogService.GetCourse(id);
 
-            if (clss == null)
+            if (course == null)
             {
                 return NotFound();
             }
 
-            return Ok(clss);
+            course.Reviews = await _reviewsService.GetReviewsAsync(course.Id);
+
+            return Ok(course);
         }
     }
 }

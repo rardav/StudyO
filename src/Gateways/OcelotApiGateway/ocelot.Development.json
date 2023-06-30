@@ -14,7 +14,8 @@
       "UpstreamHttpMethod": [
         "GET",
         "POST"
-      ]
+      ],
+      "SwaggerKey": "Courses"
     },
     {
       "DownstreamPathTemplate": "/api/Courses/{id}",
@@ -32,25 +33,36 @@
         "DELETE"
       ]
     },
-    // Classes
+    // Reviews
     {
-      "DownstreamPathTemplate": "/api/Classes/{id}",
+      "DownstreamPathTemplate": "/api/Reviews",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "classes.api",
+          "Host": "reviews.api",
           "Port": "80"
         }
       ],
-      "UpstreamPathTemplate": "/Classes/{id}",
+      "UpstreamPathTemplate": "/Reviews",
       "UpstreamHttpMethod": [
-        "GET",
-        "PUT",
-        "DELETE"
-      ]
+        "POST"
+      ],
+      "SwaggerKey": "Reviews"
     }
   ],
   "GlobalConfiguration": {
     "BaseUrl": "http://localhost:5000"
-  }
+  },
+  "SwaggerEndPoints": [
+    {
+      "Key": "Reviews",
+      "Config": [
+        {
+          "Name": "Reviews API",
+          "Version": "v1",
+          "Url": "http://localhost:5011/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ]
 }

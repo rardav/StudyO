@@ -10,7 +10,8 @@
         "identityserver": "StartDebugging",
         "ocelotapigateway": "StartDebugging",
         "identity.api": "StartDebugging",
-        "users.api": "StartDebugging"
+        "users.api": "StartDebugging",
+        "reviews.api": "StartDebugging"
       }
     }
   }

@@ -12,6 +12,8 @@ import { CoursesService } from 'src/app/_services/courses.service';
 
 export class CourseComponent implements OnInit{
   course: Course;
+  rating: number;
+  reviewsCount: number=0;
 
   level: typeof Level = Level;
   subject: typeof Subject = Subject;
@@ -29,6 +31,14 @@ export class CourseComponent implements OnInit{
 
     this.coursesService.getCourse(courseId).subscribe( course => {
       this.course = course;
+
+      let sum = 0;
+      this.course.reviews.forEach(review => {
+        sum += review.rating
+        this.reviewsCount++;
+      });
+      this.rating = sum/this.reviewsCount;
+
     })
   }
 
