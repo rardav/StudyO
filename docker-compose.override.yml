@@ -18,6 +18,15 @@ services:
     volumes:
       - reviews_data:/data/db
 
+  progressdb:
+    container_name: progressdb
+    restart: always
+    command: mongod --port 27019
+    ports:
+      - "27019:27019"
+    volumes:
+      - progress_data:/data/db
+
   usersdb:
     container_name: usersdb
     restart: always
@@ -60,6 +69,17 @@ services:
       - usersdb
     ports:
       - "8300:80"
+
+  progresstracking.api:
+    container_name: progresstracking.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - MongoDbSettings__Host=progressdb
+      - MongoDbSettings__Port=27019
+    depends_on:
+      - progressdb
+    ports:
+      - "8400:80"
        
   mongo-express:
     container_name: mongo-express
@@ -101,4 +121,5 @@ services:
       - catalog.api
     ports:
       - "5001:80"
+
 

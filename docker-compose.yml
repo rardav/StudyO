@@ -28,6 +28,12 @@ services:
       context: .
       dockerfile: src/Services/Users/Users.API/Dockerfile
 
+  progresstracking.api:
+    image: ${DOCKER_REGISTRY-}progresstrackingapi
+    build:
+      context: .
+      dockerfile: src/Services/ProgressTracking/ProgressTracking.API/Dockerfile
+
   mongo-express:
     image: mongo-express
 
@@ -51,6 +57,8 @@ volumes:
   reviews_data:
   users_data:
   pgadmin_data:
+  progress_data:
+
 
 
 

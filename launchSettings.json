@@ -11,7 +11,8 @@
         "ocelotapigateway": "StartDebugging",
         "identity.api": "StartDebugging",
         "users.api": "StartDebugging",
-        "reviews.api": "StartDebugging"
+        "reviews.api": "StartDebugging",
+        "progresstracking.api": "StartDebugging"
       }
     }
   }
