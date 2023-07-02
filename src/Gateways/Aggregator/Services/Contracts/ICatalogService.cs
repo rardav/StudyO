@@ -2,9 +2,8 @@
 
 namespace Aggregator.Services.Contracts
 {
-    public interface ICatalogService
+    public interface IProgressService
     {
-        Task<IEnumerable<CourseModel>> GetCourses();
-        Task<CourseModel> GetCourse(Guid id);
+        Task<IEnumerable<ProgressModel>> GetLatestProgressByEmail(string email);
     }
 }

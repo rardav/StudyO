@@ -14,8 +14,7 @@
       "UpstreamHttpMethod": [
         "GET",
         "POST"
-      ],
-      "SwaggerKey": "Courses"
+      ]
     },
     {
       "DownstreamPathTemplate": "/api/Courses/{id}",
@@ -46,23 +45,54 @@
       "UpstreamPathTemplate": "/Reviews",
       "UpstreamHttpMethod": [
         "POST"
+      ]
+    },
+    // ProgressTracking
+    {
+      "DownstreamPathTemplate": "/api/Progress/courses/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "progresstracking.api",
+          "Port": "80"
+        }
       ],
-      "SwaggerKey": "Reviews"
+      "UpstreamPathTemplate": "/Progress/courses/{id}",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Progress/courses",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "progresstracking.api",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/Progress/courses",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Progress",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "progresstracking.api",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/Progress",
+      "UpstreamHttpMethod": [
+        "POST",
+        "PUT"
+      ]
     }
   ],
   "GlobalConfiguration": {
     "BaseUrl": "http://localhost:5000"
-  },
-  "SwaggerEndPoints": [
-    {
-      "Key": "Reviews",
-      "Config": [
-        {
-          "Name": "Reviews API",
-          "Version": "v1",
-          "Url": "http://localhost:5011/swagger/v1/swagger.json"
-        }
-      ]
-    }
-  ]
+  }
 }

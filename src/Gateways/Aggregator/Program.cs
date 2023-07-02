@@ -12,6 +12,9 @@ builder.Services.AddHttpClient<IReviewsService, ReviewsService>(c =>
 builder.Services.AddHttpClient<ICatalogService, CatalogService>(c =>
 {
     c.BaseAddress = new Uri(builder.Configuration["ApiSettings:CatalogUrl"]);
+}); builder.Services.AddHttpClient<IProgressService, ProgressService>(c =>
+{
+    c.BaseAddress = new Uri(builder.Configuration["ApiSettings:ProgressUrl"]);
 });
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

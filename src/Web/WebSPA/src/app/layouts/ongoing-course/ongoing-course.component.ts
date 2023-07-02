@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Course } from 'src/app/_models/course';
 import { Lesson } from 'src/app/_models/lesson';
+import { Progress } from 'src/app/_models/progress';
 import { AuthService } from 'src/app/_services/auth.service';
 import { CoursesService } from 'src/app/_services/courses.service';
+import { ProgressService } from 'src/app/_services/progress.service';
 
 @Component({
   selector: 'app-ongoing-course',
@@ -17,9 +19,9 @@ export class OngoingCourseComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private coursesService: CoursesService,
+    private progressService: ProgressService,
     public authService: AuthService,
-    private router: Router) {
-      
+    private router: Router) {  
     }
 
   ngOnInit(): void {
@@ -43,19 +45,31 @@ export class OngoingCourseComponent implements OnInit {
 
   }
 
-  ngOnDestroy() {
-    console.log('destroyed')
+  private updateProgress(finished: boolean) {
+    let progress = {} as Progress;
+    progress.courseId = this.course.id;
+    progress.studentEmail = this.authService.getCurrentUser()!.email;
+    progress.lessonId = this.currentLesson.id;
+    progress.courseFinished = finished;
+
+    this.progressService.updateProgress(progress).subscribe(response => {
+      console.log(response);
+    });
   }
 
   switchLesson(lesson: Lesson) {
     this.currentLesson = lesson as Lesson;
+    this.updateProgress(false);
   }
 
   nextLesson() {
     this.currentLesson = this.lessons[this.lessons.indexOf(this.currentLesson)+1];
+    this.updateProgress(false);
   }
 
   finish() {
+    this.updateProgress(true);
+
     this.router.navigate(['/review/' + this.course.id]);
   }
 

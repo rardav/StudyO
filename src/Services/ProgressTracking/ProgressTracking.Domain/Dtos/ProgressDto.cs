@@ -2,6 +2,7 @@
 {
     public class ProgressDto
     {
+        public Guid Id { get; set; }
         public string StudentEmail { get; set; }
         public Guid CourseId { get; set; }
         public Guid LessonId { get; set; }

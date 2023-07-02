@@ -1,6 +1,7 @@
 ﻿using MongoDB.Driver;
 using ProgressTracking.Domain.Entities;
 using ProgressTracking.Infrastructure.Repositories.Contracts;
+using System;
 
 namespace ProgressTracking.Infrastructure.Repositories
 {
@@ -26,6 +27,13 @@ namespace ProgressTracking.Infrastructure.Repositories
             await _dbCollection.InsertOneAsync(progress);
         }
 
+        public async Task<IEnumerable<Progress>> GetLatestProgressByStudentAsync(string studentEmail)
+        {
+            var filter = _filterBuilder.Where(prog => prog.CourseFinished == false && prog.StudentEmail == studentEmail);
+
+            return await _dbCollection.Find(filter).Limit(3).ToListAsync();
+        }
+
         public async Task<Progress> GetProgressByCourseAndStudentAsync(Guid courseId, string studentEmail)
         {
             var filter = _filterBuilder.Eq(prog => prog.CourseId, courseId) & _filterBuilder.Eq(prog => prog.StudentEmail, studentEmail);
@@ -35,7 +43,7 @@ namespace ProgressTracking.Infrastructure.Repositories
 
         public async Task UpdateProgressAsync(Progress progress)
         {
-            var filter = _filterBuilder.Eq(prog => prog.CourseId, progress.CourseId) & _filterBuilder.Eq(prog => prog.StudentEmail, progress.CourseId);
+            var filter = _filterBuilder.Where(prog => prog.CourseId == progress.CourseId && prog.StudentEmail == progress.StudentEmail);
 
             await _dbCollection.ReplaceOneAsync(filter, progress);
         }
