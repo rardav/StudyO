@@ -1,67 +1,47 @@
-<nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800">
-    <div class="px-3 py-3 lg:px-5 lg:pl-3">
-        <div class="flex items-center justify-between">
-            <div class="flex items-center justify-start">
-                <a href="/" class="flex ml-2 md:mr-24">
-                    <span
-                        class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap line-through">STUDYO</span>
-                </a>
-            </div>
-            <div class="flex items-center font-bold">Learn C#</div>
-            <div class="flex items-center">
-                <div class="flex items-center ml-3">
-                    <div>
-                        <button type="button"
-                            class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300"
-                            aria-expanded="false" data-dropdown-toggle="dropdown-user">
-                            <img class="w-8 h-8 rounded-full"
-                                src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
-                        </button>
+<main *ngIf="course">
+    <nav class="fixed top-0 z-50 w-full bg-white border-2 border-gray-500 dark:bg-gray-800">
+        <div class="px-3 py-3 lg:px-5 lg:pl-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center justify-start">
+                    <a href="/" class="flex ml-2 md:mr-24">
+                        <span
+                            class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap line-through">STUDYO</span>
+                    </a>
+                </div>
+                <div class="flex items-center font-bold">{{course.title}}</div>
+                <div class="flex items-center">
+                    <div class="flex items-center ml-3">
+                        <div>
+                            <button type="button"
+                                class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300"
+                                aria-expanded="false" data-dropdown-toggle="dropdown-user">
+                                <img class="w-8 h-8 rounded-full"
+                                    src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                                    alt="user photo">
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
-<aside id="logo-sidebar"
-    class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 :bg-gray-800"
-    aria-label="Sidebar">
+    <aside id="logo-sidebar"
+    class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-700 sm:translate-x-0 :bg-gray-800"
+    aria-label="Sidebar"
+    *ngIf="course">
     <div class="h-full px-3 pb-4 overflow-y-auto bg-white">
         <ul class="space-y-2 font-medium">
-            <li>
-                <span class="ml-3 font-bold">1. Hello world!</span>
+            <li *ngFor="let chapter of course.chapters; let i = index;">
+                <span class="ml-3 font-bold">{{i+1}}. {{chapter.title}}</span>
                 <hr>
-            </li>
-            <li>
-                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100">
-                    <span class="ml-3">1.1. What is C#?</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100">
-                    <span class="ml-3">1.2. Run some C#</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100">
-                    <span class="ml-3">1.3. Comments</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100">
-                    <span class="ml-3">1.4. C# in the wild</span>
-                </a>
-            </li>
-
-            <li>
-                <span class="ml-3 font-bold">2. Data types and variables</span>
-                <hr>
-            </li>
-            <li>
-                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100">
-                    <span class="ml-3">2.1. Data types and variables</span>
-                </a>
+                <ul>
+                    <li *ngFor="let lesson of chapter.lessons; let j = index;">
+                        <p class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100">
+                            <span class="ml-3">{{i+1}}.{{j+1}}. {{lesson.title}}</span>
+                        </p>
+                    </li>
+                </ul>
             </li>
             <li class="flex justify-center">
                 <button
@@ -72,8 +52,22 @@
             </li>
             <li class="flex justify-center">
                 <button
+                    *ngIf="!addingChapter"
                     class="bg-red-600 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                    type="button">
+                    type="button"
+                    (click)="newChapterClick()">
+                    New chapter
+                </button>
+                <input 
+                    *ngIf="addingChapter"
+                    type="text"
+                    [(ngModel)]="newChapter.title"
+                    class="border-2 border-slate-600 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"/>
+                <button
+                    *ngIf="addingChapter"
+                    class="bg-red-600 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                    type="button"
+                    (click)="chapterAdded()">
                     New chapter
                 </button>
             </li>
@@ -81,76 +75,78 @@
     </div>
 </aside>
 
-<div class="p-4 sm:ml-64">
-    <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg mt-14">
-        <div
-            class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
-            <div class="rounded-t bg-white mb-0 px-6 py-6">
-                <div class="text-center flex justify-between">
-                    <h6 class="text-blueGray-700 text-xl font-bold">2.1. Data types and variables</h6>
-                    <button
-                        class="bg-red-600 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                        type="button">
-                        New section
-                    </button>
-                </div>
-            </div>
-            <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-                <form>
-                    <hr class="mt-6 border-b-1 border-blueGray-300" />
 
-                    <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-                        Title
-                    </h6>
-                    <div class="flex flex-wrap">
-                        <div class="w-full lg:w-12/12 px-4">
-                            <div class="relative w-full mb-3">
-                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                                    htmlFor="grid-password">
-                                    Section title
-                                </label>
-                                <input type="text"
-                                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                    value="Add some title..." />
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr class="mt-6 border-b-1 border-blueGray-300" />
-
-                    <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-                        Content
-                    </h6>
-                    <div class="flex flex-wrap">
-                        <div class="w-full lg:w-12/12 px-4">
-                            <div class="relative w-full mb-3">
-                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                                    htmlFor="grid-password">
-                                    Content
-                                </label>
-                                <textarea type="text"
-                                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                    rows="4">
-                                Add some content...
-                                </textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr class="mt-6 border-b-1 border-blueGray-300" />
-                    <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-                        Media
-                    </h6>
-                    <div class="flex flex-wrap justify-center">
+    <div class="p-4 sm:ml-64">
+        <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg mt-14">
+            <div
+                class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
+                <div class="rounded-t bg-white mb-0 px-6 py-6">
+                    <div class="text-center flex justify-between">
+                        <h6 class="text-blueGray-700 text-xl font-bold">2.1. Data types and variables</h6>
                         <button
                             class="bg-red-600 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                             type="button">
-                            Add media
+                            New section
                         </button>
                     </div>
-                </form>
-            </div>
-        </div>
+                </div>
+                <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+                    <form>
+                        <hr class="mt-6 border-b-1 border-blueGray-300" />
 
+                        <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+                            Title
+                        </h6>
+                        <div class="flex flex-wrap">
+                            <div class="w-full lg:w-12/12 px-4">
+                                <div class="relative w-full mb-3">
+                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                        htmlFor="grid-password">
+                                        Section title
+                                    </label>
+                                    <input type="text"
+                                        class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                        value="Add some title..." />
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="mt-6 border-b-1 border-blueGray-300" />
+
+                        <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+                            Content
+                        </h6>
+                        <div class="flex flex-wrap">
+                            <div class="w-full lg:w-12/12 px-4">
+                                <div class="relative w-full mb-3">
+                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                        htmlFor="grid-password">
+                                        Content
+                                    </label>
+                                    <textarea type="text"
+                                        class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                        rows="4">
+                                Add some content...
+                                </textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="mt-6 border-b-1 border-blueGray-300" />
+                        <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+                            Media
+                        </h6>
+                        <div class="flex flex-wrap justify-center">
+                            <button
+                                class="bg-red-600 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                type="button">
+                                Add media
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
     </div>
-</div>
+</main>

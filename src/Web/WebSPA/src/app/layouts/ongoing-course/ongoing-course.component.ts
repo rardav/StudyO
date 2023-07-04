@@ -15,7 +15,7 @@ import { ProgressService } from 'src/app/_services/progress.service';
 export class OngoingCourseComponent implements OnInit {
   course: Course = {} as Course;
   lessons: Lesson[] = [];
-  currentLesson: Lesson;
+  currentLesson: Lesson | undefined;
 
   constructor(private route: ActivatedRoute,
     private coursesService: CoursesService,
@@ -37,19 +37,21 @@ export class OngoingCourseComponent implements OnInit {
           })
         });
 
-        this.currentLesson = this.lessons[0];
-        console.log(this.lessons)
+        this.progressService.getCurrentProgress(this.authService.getCurrentUser()!.email, courseId).subscribe(progress => {
+          console.log(progress)
+          if (progress == null || progress.courseFinished) {this.currentLesson = this.lessons[0]; return;} 
+          this.currentLesson = this.lessons.find(lesson => lesson.id == progress.lessonId);
+        })
       },
       error: error => console.log(error)
     })
-
   }
 
   private updateProgress(finished: boolean) {
     let progress = {} as Progress;
     progress.courseId = this.course.id;
     progress.studentEmail = this.authService.getCurrentUser()!.email;
-    progress.lessonId = this.currentLesson.id;
+    progress.lessonId = this.currentLesson!.id;
     progress.courseFinished = finished;
 
     this.progressService.updateProgress(progress).subscribe(response => {
@@ -63,7 +65,7 @@ export class OngoingCourseComponent implements OnInit {
   }
 
   nextLesson() {
-    this.currentLesson = this.lessons[this.lessons.indexOf(this.currentLesson)+1];
+    this.currentLesson = this.lessons[this.lessons.indexOf(this.currentLesson!)+1];
     this.updateProgress(false);
   }
 

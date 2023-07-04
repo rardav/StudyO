@@ -26,7 +26,7 @@ namespace ProgressTracking.API.Controllers
 
             if (progress is null)
             {
-                return NotFound();
+                return Ok(null);
             }
 
             var progressDto = _mapper.Map<ProgressDto>(progress);

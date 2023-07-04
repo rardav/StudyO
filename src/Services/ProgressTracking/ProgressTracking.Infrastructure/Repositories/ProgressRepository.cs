@@ -36,7 +36,7 @@ namespace ProgressTracking.Infrastructure.Repositories
 
         public async Task<Progress> GetProgressByCourseAndStudentAsync(Guid courseId, string studentEmail)
         {
-            var filter = _filterBuilder.Eq(prog => prog.CourseId, courseId) & _filterBuilder.Eq(prog => prog.StudentEmail, studentEmail);
+            var filter = _filterBuilder.Where(prog => prog.CourseId == courseId && prog.StudentEmail == studentEmail);
 
             return await _dbCollection.Find(filter).FirstOrDefaultAsync();
         }
@@ -44,8 +44,12 @@ namespace ProgressTracking.Infrastructure.Repositories
         public async Task UpdateProgressAsync(Progress progress)
         {
             var filter = _filterBuilder.Where(prog => prog.CourseId == progress.CourseId && prog.StudentEmail == progress.StudentEmail);
+            var update = Builders<Progress>.Update
+                .Set(prog => prog.CourseFinished, progress.CourseFinished)
+                .Set(prog => prog.LessonId, progress.LessonId);
 
-            await _dbCollection.ReplaceOneAsync(filter, progress);
+
+            await _dbCollection.UpdateOneAsync(filter, update);
         }
     }
 }

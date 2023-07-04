@@ -24,4 +24,12 @@ export class ProgressService {
       }
     });
   }
+
+  getCurrentProgress(email: string, courseId: string){
+    return this.http.get<Progress>(this.gatewayUrl + 'progress/courses/' + courseId, {
+      params: {
+        studentEmail: email
+      }
+    });
+  }
 }

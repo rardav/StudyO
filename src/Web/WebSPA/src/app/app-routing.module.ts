@@ -35,7 +35,7 @@ const routes: Routes = [
   { path: 'catalog/start/:id', component: OngoingCourseComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'review/:id', component: ReviewComponent },
-  { path: 'add-course', component: AddCourseComponent },
+  { path: 'add-course/:id', component: AddCourseComponent },
   { path: "**", redirectTo: "", pathMatch: "full" },
 ];
 

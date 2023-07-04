@@ -32,6 +32,48 @@
         "DELETE"
       ]
     },
+    {
+      "DownstreamPathTemplate": "/api/Courses/{id}/chapters",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "catalog.api",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/Courses/{id}/chapters",
+      "UpstreamHttpMethod": [
+        "POST"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Courses/{id}/chapters/{chapterId}/lessons",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "catalog.api",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/Courses/{id}/chapters/{chapterId}/lessons",
+      "UpstreamHttpMethod": [
+        "POST"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Courses/{id}/chapters/{chapterId}/lessons/{lessonId}/sections",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "catalog.api",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/Courses/{id}/chapters/{chapterId}/lessons/{lessonId}/sections",
+      "UpstreamHttpMethod": [
+        "POST"
+      ]
+    },
     // Reviews
     {
       "DownstreamPathTemplate": "/api/Reviews",
